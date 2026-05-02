@@ -1,0 +1,1663 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Muhammad Waqas Arshad — Quantum Computing & AI Researcher</title>
+<meta name="description" content="PhD Researcher in Quantum Computing, AI, and Optimization. University of Bologna × Ferrari S.p.A. × Purdue University." />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+/* ============== TOKENS ============== */
+:root {
+  --ink:        #0b0d10;
+  --paper:      #f5f1e8;
+  --paper-2:    #ebe5d4;
+  --rule:       #1a1d22;
+  --accent:     #c8102e; /* Ferrari Rosso Corsa */
+  --accent-2:   #1d3f8a; /* Bologna deep blue */
+  --quantum:    #6a4eff;
+  --muted:      #5b5e64;
+  --soft:       #d9d2bf;
+  --grid-line:  rgba(11,13,16,0.06);
+
+  --serif:  'Fraunces', 'Iowan Old Style', Georgia, serif;
+  --sans:   'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
+  --mono:   'JetBrains Mono', ui-monospace, Menlo, monospace;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.55;
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+  background-image:
+    radial-gradient(1px 1px at 20% 30%, rgba(11,13,16,0.04) 1px, transparent 0),
+    radial-gradient(1px 1px at 70% 80%, rgba(11,13,16,0.04) 1px, transparent 0);
+  background-size: 80px 80px, 120px 120px;
+}
+
+/* Subtle paper grain */
+body::before {
+  content: '';
+  position: fixed; inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  z-index: 1;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ============== TOP BAR ============== */
+.topbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 32px;
+  background: rgba(245,241,232,0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--grid-line);
+}
+
+.brand {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 15px;
+  letter-spacing: -0.01em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.brand-mark {
+  width: 22px; height: 22px;
+  border: 1.5px solid var(--ink);
+  border-radius: 50%;
+  position: relative;
+  display: inline-block;
+}
+.brand-mark::after {
+  content: '';
+  position: absolute;
+  inset: 4px;
+  background: var(--accent);
+  border-radius: 50%;
+}
+.brand-mark::before {
+  content: '';
+  position: absolute;
+  inset: -3px;
+  border: 1px dashed var(--ink);
+  border-radius: 50%;
+  opacity: 0.35;
+  animation: spin 18s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+
+.nav {
+  display: flex;
+  gap: 28px;
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.nav a {
+  color: var(--muted);
+  transition: color .2s;
+  position: relative;
+}
+.nav a:hover { color: var(--ink); }
+.nav a::before {
+  content: counter(navi, decimal-leading-zero) ' / ';
+  counter-increment: navi;
+  opacity: 0.5;
+}
+.nav { counter-reset: navi; }
+
+@media (max-width: 720px) {
+  .nav { display: none; }
+}
+
+/* ============== LAYOUT ============== */
+.shell {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+section {
+  padding: 96px 0;
+  border-bottom: 1px solid var(--grid-line);
+}
+
+.section-label {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 28px;
+}
+.section-label::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: var(--ink);
+}
+
+.section-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: clamp(34px, 5vw, 56px);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 18px;
+  font-variation-settings: "opsz" 100;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.section-lede {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.55;
+  color: var(--muted);
+  max-width: 64ch;
+  margin-bottom: 56px;
+  font-style: italic;
+}
+
+/* ============== HERO ============== */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 48px;
+  align-items: center;
+  padding-top: 110px;
+  padding-bottom: 80px;
+  position: relative;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(transparent 39px, var(--grid-line) 40px),
+    linear-gradient(90deg, transparent 39px, var(--grid-line) 40px);
+  background-size: 40px 40px;
+  opacity: 0.5;
+  pointer-events: none;
+  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+}
+
+.hero-meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.hero-meta span {
+  display: flex; align-items: center; gap: 8px;
+}
+.hero-meta span:not(:last-child)::after {
+  content: '';
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(48px, 7.5vw, 104px);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+  font-variation-settings: "opsz" 144;
+  margin-bottom: 34px;
+}
+.hero h1 .first { display: block; }
+.hero h1 .last {
+  display: block;
+  font-style: italic;
+  font-weight: 400;
+  color: var(--ink);
+  position: relative;
+  padding-left: 0.05em;
+}
+.hero h1 .last::after {
+  content: '.';
+  color: var(--accent);
+}
+
+.hero-tag {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  line-height: 1.45;
+  color: var(--ink);
+  max-width: 52ch;
+  margin-bottom: 38px;
+  font-weight: 400;
+}
+.hero-tag strong {
+  font-weight: 600;
+  font-style: normal;
+  background: linear-gradient(180deg, transparent 60%, rgba(200,16,46,0.18) 60%);
+  padding: 0 2px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+.btn {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 14px 22px;
+  border: 1.5px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  cursor: pointer;
+  transition: all .25s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--accent);
+}
+.btn.primary {
+  background: var(--ink);
+  color: var(--paper);
+}
+.btn.primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+.btn .arrow { transition: transform .25s; }
+.btn:hover .arrow { transform: translateX(3px); }
+
+/* Hero figure: orbital diagram */
+.hero-figure {
+  position: relative;
+  aspect-ratio: 1 / 1;
+  max-width: 500px;
+  margin-left: auto;
+}
+.orbit {
+  position: absolute;
+  inset: 0;
+  border: 1px solid var(--ink);
+  border-radius: 50%;
+}
+.orbit-2 {
+  inset: 14%;
+  border-style: dashed;
+  opacity: 0.6;
+  animation: spin 40s linear infinite reverse;
+}
+.orbit-3 {
+  inset: 30%;
+  border-color: var(--accent);
+  opacity: 0.5;
+  animation: spin 28s linear infinite;
+}
+.orbit-4 {
+  inset: 46%;
+  border-color: var(--quantum);
+  opacity: 0.7;
+}
+.electron {
+  position: absolute;
+  width: 14px; height: 14px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 4px rgba(200,16,46,0.12);
+}
+.e1 { top: -7px; left: 50%; transform: translateX(-50%); }
+.e2 { top: 14%; right: -7px; background: var(--quantum); box-shadow: 0 0 0 4px rgba(106,78,255,0.15); }
+.e3 { bottom: 14%; left: -7px; width: 10px; height: 10px; background: var(--ink); }
+.center-node {
+  position: absolute;
+  inset: 46%;
+  background: var(--ink);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.05em;
+}
+.figure-tag {
+  position: absolute;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.tag-tl { top: -4px; left: -8px; }
+.tag-br { bottom: -4px; right: -8px; text-align: right; }
+.figure-tag::before { content: '— '; color: var(--accent); }
+
+@media (max-width: 880px) {
+  .hero { grid-template-columns: 1fr; padding-top: 130px; }
+  .hero-figure { max-width: 320px; margin: 24px auto 0; }
+}
+
+/* ============== MARQUEE ============== */
+.marquee {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 18px 0;
+  overflow: hidden;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+.marquee-track {
+  display: flex;
+  gap: 60px;
+  white-space: nowrap;
+  animation: scroll 40s linear infinite;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 22px;
+  font-weight: 400;
+}
+.marquee-track span { display: inline-flex; align-items: center; gap: 60px; }
+.marquee-track span::after {
+  content: '✦';
+  color: var(--accent);
+  font-style: normal;
+}
+@keyframes scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* ============== ABOUT ============== */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+}
+.about-prose p {
+  font-family: var(--serif);
+  font-size: 19px;
+  line-height: 1.7;
+  margin-bottom: 20px;
+  color: var(--ink);
+}
+.about-prose p:first-of-type::first-letter {
+  font-family: var(--serif);
+  font-weight: 700;
+  font-size: 64px;
+  float: left;
+  line-height: 0.85;
+  margin-right: 10px;
+  margin-top: 6px;
+  color: var(--accent);
+}
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+  align-self: start;
+  margin-top: 18px;
+}
+.stat {
+  background: var(--paper);
+  padding: 28px 24px;
+  position: relative;
+}
+.stat-num {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: 56px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.stat-num em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+.stat-label {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 12px;
+}
+.stat-corner {
+  position: absolute;
+  top: 10px; right: 12px;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--muted);
+}
+
+@media (max-width: 880px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ============== EXPERIENCE / TIMELINE ============== */
+.timeline {
+  position: relative;
+}
+.exp-item {
+  display: grid;
+  grid-template-columns: 180px 1fr 1fr;
+  gap: 32px;
+  padding: 32px 0;
+  border-top: 1px solid var(--ink);
+  align-items: start;
+  transition: background .3s;
+}
+.exp-item:last-child { border-bottom: 1px solid var(--ink); }
+.exp-item:hover {
+  background: var(--paper-2);
+  padding-left: 18px;
+  padding-right: 18px;
+}
+.exp-period {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  padding-top: 4px;
+}
+.exp-period strong {
+  color: var(--ink);
+  font-weight: 600;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 14px;
+}
+.exp-role {
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.exp-org {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-top: 8px;
+}
+.exp-desc {
+  font-family: var(--serif);
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+@media (max-width: 880px) {
+  .exp-item { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
+  .exp-item:hover { padding-left: 0; padding-right: 0; }
+  .exp-role { font-size: 20px; }
+}
+
+/* ============== RESEARCH GRID ============== */
+.research-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: var(--ink);
+  border: 1px solid var(--ink);
+}
+.research-card {
+  background: var(--paper);
+  padding: 36px 28px;
+  position: relative;
+  transition: background .3s;
+  cursor: default;
+}
+.research-card:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+.research-card:hover .research-num,
+.research-card:hover .research-icon {
+  color: var(--accent);
+}
+.research-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--muted);
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: space-between;
+}
+.research-icon {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 64px;
+  line-height: 1;
+  color: var(--accent);
+  margin-bottom: 18px;
+  display: block;
+  font-weight: 300;
+}
+.research-title {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 14px;
+  letter-spacing: -0.01em;
+}
+.research-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--muted);
+  transition: color .3s;
+}
+.research-card:hover .research-desc {
+  color: var(--soft);
+}
+
+@media (max-width: 880px) {
+  .research-grid { grid-template-columns: 1fr; }
+}
+
+/* ============== EDUCATION ============== */
+.edu-list {
+  display: flex;
+  flex-direction: column;
+}
+.edu-item {
+  display: grid;
+  grid-template-columns: 80px 1fr auto;
+  gap: 28px;
+  padding: 28px 0;
+  border-top: 1px solid var(--grid-line);
+  align-items: baseline;
+}
+.edu-item:first-child { border-top: 1px solid var(--ink); }
+.edu-item:last-child { border-bottom: 1px solid var(--ink); }
+.edu-year {
+  font-family: var(--mono);
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+}
+.edu-degree {
+  font-family: var(--serif);
+  font-size: 22px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+  margin-bottom: 4px;
+}
+.edu-where {
+  font-size: 13px;
+  color: var(--muted);
+  font-family: var(--mono);
+  letter-spacing: 0.04em;
+}
+.edu-tag {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent);
+  border: 1px solid var(--accent);
+  padding: 5px 10px;
+  white-space: nowrap;
+}
+
+@media (max-width: 720px) {
+  .edu-item { grid-template-columns: 1fr; gap: 6px; }
+  .edu-tag { justify-self: start; margin-top: 6px; }
+}
+
+/* ============== PUBLICATIONS ============== */
+.pub-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--ink);
+  flex-wrap: wrap;
+}
+.pub-tab {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 12px 18px;
+  cursor: pointer;
+  background: transparent;
+  border: none;
+  color: var(--muted);
+  border-bottom: 2px solid transparent;
+  margin-bottom: -1px;
+  transition: all .2s;
+}
+.pub-tab:hover { color: var(--ink); }
+.pub-tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--accent);
+}
+.pub-tab .count {
+  font-size: 9px;
+  margin-left: 6px;
+  opacity: 0.6;
+}
+
+.pub-list { list-style: none; }
+.pub-item {
+  display: grid;
+  grid-template-columns: 56px 1fr 130px;
+  gap: 24px;
+  padding: 22px 0;
+  border-top: 1px solid var(--grid-line);
+  align-items: baseline;
+  transition: background .25s;
+}
+.pub-item:first-child { border-top: 1px solid var(--ink); }
+.pub-item:hover { background: var(--paper-2); padding-left: 12px; padding-right: 12px; }
+.pub-num {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.05em;
+}
+.pub-title {
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: -0.005em;
+}
+.pub-venue {
+  display: block;
+  font-size: 13px;
+  color: var(--muted);
+  margin-top: 6px;
+  font-family: var(--sans);
+  font-style: italic;
+}
+.pub-year {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-align: right;
+  white-space: nowrap;
+}
+.pub-year .badge {
+  display: inline-block;
+  padding: 3px 7px;
+  border: 1px solid var(--accent);
+  color: var(--accent);
+  margin-left: 6px;
+  font-size: 9px;
+  letter-spacing: 0.1em;
+}
+
+.pub-list[data-tab]:not([data-tab="all"]) .pub-item { display: none; }
+.pub-list.show-all .pub-item { display: grid; }
+.pub-list.show-2026 .pub-item[data-year="2026"] { display: grid; }
+.pub-list.show-2025 .pub-item[data-year="2025"] { display: grid; }
+.pub-list.show-pre  .pub-item[data-year="pre"]  { display: grid; }
+.pub-list.show-rev  .pub-item[data-year="rev"]  { display: grid; }
+.pub-list:not(.show-all):not(.show-2026):not(.show-2025):not(.show-pre):not(.show-rev) .pub-item { display: grid; }
+
+@media (max-width: 720px) {
+  .pub-item { grid-template-columns: 1fr; gap: 6px; }
+  .pub-num, .pub-year { font-size: 10px; }
+  .pub-year { text-align: left; }
+}
+
+/* ============== SKILLS / KEYWORDS ============== */
+.keywords {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.kw {
+  font-family: var(--mono);
+  font-size: 12px;
+  padding: 8px 14px;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  transition: all .2s;
+  cursor: default;
+}
+.kw:hover {
+  background: var(--ink);
+  color: var(--paper);
+  transform: translate(-2px, -2px);
+  box-shadow: 2px 2px 0 var(--accent);
+}
+.kw.featured {
+  background: var(--ink);
+  color: var(--paper);
+}
+.kw.featured:hover { background: var(--accent); border-color: var(--accent); }
+
+/* ============== CONTACT ============== */
+.contact {
+  background: var(--ink);
+  color: var(--paper);
+  margin: 0 -32px;
+  padding: 96px 64px;
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+.contact::before {
+  content: 'AVAILABLE FOR COLLABORATION';
+  position: absolute;
+  top: 24px; left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  color: var(--accent);
+}
+.contact-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 64px;
+  align-items: end;
+}
+.contact h2 {
+  font-family: var(--serif);
+  font-weight: 300;
+  font-size: clamp(48px, 8vw, 110px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  font-variation-settings: "opsz" 144;
+}
+.contact h2 em {
+  font-style: italic;
+  color: var(--accent);
+}
+.contact-info {
+  font-family: var(--mono);
+  font-size: 13px;
+  line-height: 2;
+}
+.contact-info a {
+  border-bottom: 1px solid rgba(245,241,232,0.3);
+  transition: border-color .2s;
+  word-break: break-all;
+}
+.contact-info a:hover { border-bottom-color: var(--accent); }
+.contact-info .label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--accent);
+  margin-top: 16px;
+  margin-bottom: 4px;
+}
+.contact-info .label:first-child { margin-top: 0; }
+
+@media (max-width: 880px) {
+  .contact { padding: 64px 32px; margin: 0 -32px; }
+  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+/* ============== FOOTER ============== */
+.foot {
+  padding: 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  border-top: 1px solid var(--grid-line);
+}
+.foot-links { display: flex; gap: 22px; }
+.foot-links a:hover { color: var(--accent); }
+
+@media (max-width: 720px) {
+  .foot { flex-direction: column; gap: 12px; text-align: center; }
+}
+
+/* ============== UTILITIES & ANIMATION ============== */
+.fade-in {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity .8s ease, transform .8s ease;
+}
+.fade-in.visible { opacity: 1; transform: none; }
+
+::selection { background: var(--accent); color: var(--paper); }
+</style>
+</head>
+
+<body>
+
+<!-- ============= TOPBAR ============= -->
+<nav class="topbar">
+  <div class="brand">
+    <span class="brand-mark"></span>
+    <span>M.W. Arshad</span>
+  </div>
+  <div class="nav">
+    <a href="#about">About</a>
+    <a href="#work">Work</a>
+    <a href="#research">Research</a>
+    <a href="#publications">Papers</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="shell">
+
+<!-- ============= HERO ============= -->
+<section class="hero" id="top">
+  <div>
+    <div class="hero-meta">
+      <span>Bologna · Maranello · Indiana</span>
+      <span>Est. 2022</span>
+      <span>PhD, 2026</span>
+    </div>
+
+    <h1>
+      <span class="first">Muhammad</span>
+      <span class="first">Waqas</span>
+      <span class="last">Arshad</span>
+    </h1>
+
+    <p class="hero-tag">
+      Researcher at the intersection of
+      <strong>quantum computing</strong>,
+      <strong>artificial intelligence</strong>, and
+      <strong>automotive engineering</strong> &mdash;
+      building optimization frameworks that move from equations to chassis.
+    </p>
+
+    <div class="hero-actions">
+      <a class="btn primary" href="#publications">
+        Read research <span class="arrow">→</span>
+      </a>
+      <a class="btn" href="mailto:muhammadwaqas.arsha2@unibo.it">
+        Get in touch <span class="arrow">→</span>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-figure" aria-hidden="true">
+    <span class="figure-tag tag-tl">Fig. 01 / Hybrid quantum–classical loop</span>
+    <div class="orbit orbit-1"></div>
+    <div class="orbit orbit-2"></div>
+    <div class="orbit orbit-3"></div>
+    <div class="orbit orbit-4"></div>
+    <div class="electron e1"></div>
+    <div class="electron e2"></div>
+    <div class="electron e3"></div>
+    <div class="center-node">QUBO</div>
+    <span class="figure-tag tag-br">DWS · QAOA · SLSQP</span>
+  </div>
+</section>
+
+</div>
+
+<!-- ============= MARQUEE ============= -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track">
+    <span>University of Bologna</span>
+    <span>Ferrari S.p.A.</span>
+    <span>Purdue University</span>
+    <span>IBM Qiskit Advocate</span>
+    <span>Brookhaven National Laboratory</span>
+    <span>Forschungszentrum Jülich</span>
+    <span>University of Bologna</span>
+    <span>Ferrari S.p.A.</span>
+    <span>Purdue University</span>
+    <span>IBM Qiskit Advocate</span>
+    <span>Brookhaven National Laboratory</span>
+    <span>Forschungszentrum Jülich</span>
+  </div>
+</div>
+
+<div class="shell">
+
+<!-- ============= ABOUT ============= -->
+<section id="about">
+  <div class="section-label">§ 01 / About</div>
+  <h2 class="section-title">A bridge between <em>quantum theory</em><br>and <em>real-world machines</em>.</h2>
+
+  <div class="about-grid">
+    <div class="about-prose">
+      <p>
+        I hold a PhD in Computer Science and Engineering from the University of Bologna,
+        completed in close collaboration with Ferrari S.p.A. on quantum computing applied to
+        the kinematic and geometric optimization of double-wishbone suspension systems.
+        Successfully defended in March 2026, my thesis explores how QUBO formulations,
+        variational quantum circuits, and classical metaheuristics can co-exist in a
+        single hybrid pipeline.
+      </p>
+      <p>
+        I spent eight months as a Visiting Research Scholar at Purdue University Fort Wayne
+        and serve as an IBM Qiskit Advocate. Beyond suspension geometry, my work spans
+        time-series forecasting for healthcare, computer vision, federated learning, and
+        decision-support systems &mdash; with thirty-plus peer-reviewed publications across
+        Springer, IEEE, MDPI, Wiley, and Elsevier venues.
+      </p>
+    </div>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-num">30<em>+</em></div>
+        <div class="stat-label">Peer-reviewed papers</div>
+        <div class="stat-corner">a</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">3<em>×</em></div>
+        <div class="stat-label">Continents researched</div>
+        <div class="stat-corner">b</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">11</div>
+        <div class="stat-label">Journal & conf. reviews</div>
+        <div class="stat-corner">c</div>
+      </div>
+      <div class="stat">
+        <div class="stat-num">5<em>×</em></div>
+        <div class="stat-label">Quantum summer schools</div>
+        <div class="stat-corner">d</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============= EXPERIENCE ============= -->
+<section id="work">
+  <div class="section-label">§ 02 / Affiliations</div>
+  <h2 class="section-title">Where the work <em>happens</em>.</h2>
+  <p class="section-lede">Selected positions across academia and industry &mdash; from Maranello's design floor to Bologna's lecture halls and the cleanrooms of Brookhaven.</p>
+
+  <div class="timeline">
+
+    <div class="exp-item">
+      <div class="exp-period"><strong>2024 — Present</strong>Active</div>
+      <div>
+        <div class="exp-role">IBM Qiskit Advocate</div>
+        <div class="exp-org">IBM Quantum</div>
+      </div>
+      <div class="exp-desc">Advancing quantum computing literacy and contributing to growth of the Qiskit ecosystem in collaboration with IBM.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period"><strong>2024 — 2025</strong>8 months</div>
+      <div>
+        <div class="exp-role">Visiting Research Scholar</div>
+        <div class="exp-org">Purdue University · Fort Wayne, IN, USA</div>
+      </div>
+      <div class="exp-desc">Quantum computing, machine learning, and computer vision applied to time-series and automotive suspension design; integration with 2D / 3D modeling pipelines.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period"><strong>Nov 2022 — Oct 2025</strong>3 years</div>
+      <div>
+        <div class="exp-role">PhD Research Scholar</div>
+        <div class="exp-org">Ferrari S.p.A. · Maranello, Italy</div>
+      </div>
+      <div class="exp-desc">Joint PhD program with the University of Bologna. Defined and solved Ferrari-set optimization problems using hybrid quantum–classical algorithms. Successfully defended March 2026.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period"><strong>2018 — 2023</strong>5 years</div>
+      <div>
+        <div class="exp-role">Head of IT, Warehouse & Research</div>
+        <div class="exp-org">Norwich Pharmaceuticals · Islamabad</div>
+      </div>
+      <div class="exp-desc">Led IT infrastructure, inventory operations, import compliance, and research coordination supporting drug discovery and product development.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period"><strong>2019 — 2023</strong>4 years</div>
+      <div>
+        <div class="exp-role">Head of Store & IT Consultant</div>
+        <div class="exp-org">PROMED International · Islamabad</div>
+      </div>
+      <div class="exp-desc">Warehouse oversight, financial forecasting support, software development for medical-device imports including stents and balloons.</div>
+    </div>
+
+    <div class="exp-item">
+      <div class="exp-period"><strong>2018 — Present</strong>Ongoing</div>
+      <div>
+        <div class="exp-role">Head, General Secretariat</div>
+        <div class="exp-org">Internet Society · Blockchain SIG</div>
+      </div>
+      <div class="exp-desc">Drafting SOPs and frameworks for ethical use of blockchain technology; managing administrative operations.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============= RESEARCH AREAS ============= -->
+<section id="research">
+  <div class="section-label">§ 03 / Research Domains</div>
+  <h2 class="section-title">Six threads that <em>knot together</em>.</h2>
+  <p class="section-lede">My work is unified by one question: how do we make optimization tractable when the design space is geometric, continuous, and physically constrained?</p>
+
+  <div class="research-grid">
+
+    <div class="research-card">
+      <div class="research-num"><span>01</span><span>↗</span></div>
+      <span class="research-icon">ψ</span>
+      <h3 class="research-title">Quantum Computing</h3>
+      <p class="research-desc">QUBO formulations, QAOA, variational quantum algorithms, and D-Wave annealing for combinatorial design problems.</p>
+    </div>
+
+    <div class="research-card">
+      <div class="research-num"><span>02</span><span>↗</span></div>
+      <span class="research-icon">∇</span>
+      <h3 class="research-title">Hybrid Optimization</h3>
+      <p class="research-desc">QUBO–SQP and surrogate-assisted frameworks bridging discrete quantum sampling with continuous classical refinement.</p>
+    </div>
+
+    <div class="research-card">
+      <div class="research-num"><span>03</span><span>↗</span></div>
+      <span class="research-icon">⚙</span>
+      <h3 class="research-title">Automotive Kinematics</h3>
+      <p class="research-desc">3D parametric modeling and multi-objective optimization of double-wishbone and five-link suspensions.</p>
+    </div>
+
+    <div class="research-card">
+      <div class="research-num"><span>04</span><span>↗</span></div>
+      <span class="research-icon">∂</span>
+      <h3 class="research-title">Deep Learning</h3>
+      <p class="research-desc">Time-series forecasting, computer vision, and reinforcement learning for design and clinical decision support.</p>
+    </div>
+
+    <div class="research-card">
+      <div class="research-num"><span>05</span><span>↗</span></div>
+      <span class="research-icon">∑</span>
+      <h3 class="research-title">Decision Sciences</h3>
+      <p class="research-desc">MCDM techniques (MAIRCA, MOORA, MARCOS) for evaluation and ranking in operational and educational settings.</p>
+    </div>
+
+    <div class="research-card">
+      <div class="research-num"><span>06</span><span>↗</span></div>
+      <span class="research-icon">⌬</span>
+      <h3 class="research-title">Quantum-ML in Healthcare</h3>
+      <p class="research-desc">Quantum machine learning for cardiac phenotyping, cancer prediction, and biomedical signal classification.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============= EDUCATION ============= -->
+<section id="education">
+  <div class="section-label">§ 04 / Education</div>
+  <h2 class="section-title">A decade of <em>training</em>.</h2>
+
+  <div class="edu-list">
+
+    <div class="edu-item">
+      <div class="edu-year">2022 — 26</div>
+      <div>
+        <div class="edu-degree">Ph.D. Computer Science & Engineering</div>
+        <div class="edu-where">University of Bologna, Italy · with Ferrari S.p.A.</div>
+      </div>
+      <div class="edu-tag">Awarded Mar 2026</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2025</div>
+      <div>
+        <div class="edu-degree">Quantum Information Science & Engineering</div>
+        <div class="edu-where">Brookhaven National Lab · Virginia Tech · C2QA · DOE</div>
+      </div>
+      <div class="edu-tag">Program</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2023</div>
+      <div>
+        <div class="edu-degree">ADEQUATE — End-to-End Quantum Computing</div>
+        <div class="edu-where">EIT Deep Tech Talent · CTU Prague · Univ. of Latvia · QWorld</div>
+      </div>
+      <div class="edu-tag">Workshop</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2023</div>
+      <div>
+        <div class="edu-degree">Quantum Information Processing</div>
+        <div class="edu-where">Forschungszentrum Jülich · JUNIQ, Germany</div>
+      </div>
+      <div class="edu-tag">Summer School</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2023</div>
+      <div>
+        <div class="edu-degree">European Summer School on AI (ESSAI)</div>
+        <div class="edu-where">University of Ljubljana · TAILOR Network</div>
+      </div>
+      <div class="edu-tag">Summer School</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2023</div>
+      <div>
+        <div class="edu-degree">Quantum Learning Theory (QMATH Masterclass)</div>
+        <div class="edu-where">PhD School of SCIENCE, University of Copenhagen</div>
+      </div>
+      <div class="edu-tag">Masterclass</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2019 — 22</div>
+      <div>
+        <div class="edu-degree">M.S. Artificial Intelligence (Scholarship)</div>
+        <div class="edu-where">Air University, Islamabad, Pakistan</div>
+      </div>
+      <div class="edu-tag">M.S.</div>
+    </div>
+
+    <div class="edu-item">
+      <div class="edu-year">2015 — 19</div>
+      <div>
+        <div class="edu-degree">B.S. Computer Science (Scholarship)</div>
+        <div class="edu-where">PMAS Arid Agriculture University (UIIT), Rawalpindi</div>
+      </div>
+      <div class="edu-tag">B.S.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============= PUBLICATIONS ============= -->
+<section id="publications">
+  <div class="section-label">§ 05 / Selected Publications</div>
+  <h2 class="section-title">Thirty-plus papers, <em>five active manuscripts</em>.</h2>
+  <p class="section-lede">Filter by year. The full list with citations and DOIs lives on Google Scholar &mdash; this is a curated view of the work I am proudest of.</p>
+
+  <div class="pub-tabs">
+    <button class="pub-tab active" data-filter="all">All<span class="count">35+</span></button>
+    <button class="pub-tab" data-filter="rev">Under review<span class="count">05</span></button>
+    <button class="pub-tab" data-filter="2026">2026<span class="count">03</span></button>
+    <button class="pub-tab" data-filter="2025">2025<span class="count">14</span></button>
+    <button class="pub-tab" data-filter="pre">Earlier<span class="count">15+</span></button>
+  </div>
+
+  <ul class="pub-list" id="pubList">
+
+    <!-- 2026 -->
+    <li class="pub-item" data-year="2026">
+      <span class="pub-num">001</span>
+      <div>
+        <div class="pub-title">Constraint-Guided Probabilistic Digital Twin Based Microclimate Forecasting Using Latent Stochastic Dynamics</div>
+        <span class="pub-venue">IEEE WoWMoM 2026 · Ashraf, Bononi, Arshad et al.</span>
+      </div>
+      <span class="pub-year">2026<span class="badge">Accepted</span></span>
+    </li>
+    <li class="pub-item" data-year="2026">
+      <span class="pub-num">002</span>
+      <div>
+        <div class="pub-title">Gradient-Based Camber Optimization of a Five-Link Suspension: Modeling, Analysis, and Benchmarking</div>
+        <span class="pub-venue">IEEE iCoMET 2026</span>
+      </div>
+      <span class="pub-year">2026<span class="badge">Accepted</span></span>
+    </li>
+    <li class="pub-item" data-year="2026">
+      <span class="pub-num">003</span>
+      <div>
+        <div class="pub-title">HPC: A Computational Benchmark of Classical, Parallel, and Hybrid Metaheuristics for QUBO-Based Suspension Geometry Optimization</div>
+        <span class="pub-venue">Machines, 14(2), 248</span>
+      </div>
+      <span class="pub-year">2026</span>
+    </li>
+
+    <!-- Under review -->
+    <li class="pub-item" data-year="rev">
+      <span class="pub-num">R01</span>
+      <div>
+        <div class="pub-title">A Surrogate-Assisted Multi-Objective Optimization Framework for the Kinematic Design of 3D Double-Wishbone Suspension</div>
+        <span class="pub-venue">SN Computer Science, Springer</span>
+      </div>
+      <span class="pub-year">Under review</span>
+    </li>
+    <li class="pub-item" data-year="rev">
+      <span class="pub-num">R02</span>
+      <div>
+        <div class="pub-title">A Hybrid Variational Quantum-Classical Framework for Multi-Objective Design Optimization of DWS Kinematics</div>
+        <span class="pub-venue">JESTECH, Elsevier</span>
+      </div>
+      <span class="pub-year">Under review</span>
+    </li>
+    <li class="pub-item" data-year="rev">
+      <span class="pub-num">R03</span>
+      <div>
+        <div class="pub-title">Calibration-Aware Gating for Budgeted LLM Supervision in Graph Neural Network Link Prediction</div>
+        <span class="pub-venue">Discover Computing</span>
+      </div>
+      <span class="pub-year">Under review</span>
+    </li>
+    <li class="pub-item" data-year="rev">
+      <span class="pub-num">R04</span>
+      <div>
+        <div class="pub-title">From Chat to Graph: Evaluating Interface Legibility for Human Oversight of Multi-Agent AI Systems</div>
+        <span class="pub-venue">Human-Centric Intelligent Systems</span>
+      </div>
+      <span class="pub-year">Under review</span>
+    </li>
+    <li class="pub-item" data-year="rev">
+      <span class="pub-num">R05</span>
+      <div>
+        <div class="pub-title">Towards LLM-Guided Personalized Cardiac Treatment Optimization: A Hybrid Symbolic-Numerical Framework</div>
+        <span class="pub-venue">Health Information Science and Systems</span>
+      </div>
+      <span class="pub-year">Under review</span>
+    </li>
+
+    <!-- 2025 -->
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">004</span>
+      <div>
+        <div class="pub-title">Design and Multi-Objective Kinematic Optimization of 3D Double Wishbone Suspensions Using an Ensemble Optimization</div>
+        <span class="pub-venue">Applied Research, Wiley</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">005</span>
+      <div>
+        <div class="pub-title">A Reinforcement Learning Approach for the Kinematic Optimization of Double-Wishbone Suspension Geometry</div>
+        <span class="pub-venue">32nd ICSEng, Springer</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">006</span>
+      <div>
+        <div class="pub-title">Double Wishbone Suspension: A Computational Framework for Parametric 3D Kinematic Modeling and Simulation Using Mathematica</div>
+        <span class="pub-venue">Technologies, 13(8), 332</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">007</span>
+      <div>
+        <div class="pub-title">An Advanced Hybrid Optimization Algorithm for Vehicle Suspension Design Using a QUBO-SQP Framework</div>
+        <span class="pub-venue">Mathematics, 13, 3843</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">008</span>
+      <div>
+        <div class="pub-title">Quantum Computing in the Automotive Industry: Survey, Challenges, and Perspectives</div>
+        <span class="pub-venue">The Journal of Supercomputing, 81(10), 1–45</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">009</span>
+      <div>
+        <div class="pub-title">Multi-Objective Optimization of Independent Automotive Suspension by AI and Quantum Approaches: A Systematic Review</div>
+        <span class="pub-venue">Machines, 13(3)</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">010</span>
+      <div>
+        <div class="pub-title">A Hybrid Quantum-Classical Approach Using D-Wave and SLSQP for Double Wishbone Suspension System Optimization</div>
+        <span class="pub-venue">IEEE Conference on Artificial Intelligence (CAI)</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">011</span>
+      <div>
+        <div class="pub-title">Quantum Machine Learning for Classification of Left Ventricular Ejection Fraction Phenotypes from Echocardiograms</div>
+        <span class="pub-venue">IEEE-EMBS BHI · Decoodt, Arshad, Morissens, Liu</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">012</span>
+      <div>
+        <div class="pub-title">YOLOv11-SAMNet: A Hybrid Detection and Segmentation Framework for Urine Sediment Analysis</div>
+        <span class="pub-venue">ICCSA · Springer</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">013</span>
+      <div>
+        <div class="pub-title">Cutting-Edge Malware Detection in Healthcare: Leveraging Cascaded-AlexNet Model</div>
+        <span class="pub-venue">ICCSA · Springer</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">014</span>
+      <div>
+        <div class="pub-title">A Hybrid Genetic Algorithm and Hidden Markov Model-Based Hashing Technique for Robust Data Security</div>
+        <span class="pub-venue">Journal of Cyber Security and Risk Auditing</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+    <li class="pub-item" data-year="2025">
+      <span class="pub-num">015</span>
+      <div>
+        <div class="pub-title">An Integrated Federated Learning Framework with Optimization for Industrial IoT Intrusion Detection</div>
+        <span class="pub-venue">SHIFRA</span>
+      </div>
+      <span class="pub-year">2025</span>
+    </li>
+
+    <!-- 2024 -->
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">016</span>
+      <div>
+        <div class="pub-title">Optimization of Double Wishbone Suspension: Evaluating the Performance of Classes of Algorithms</div>
+        <span class="pub-venue">ICAMCS · IEEE Computer Society</span>
+      </div>
+      <span class="pub-year">2024</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">017</span>
+      <div>
+        <div class="pub-title">Decision Support System in Teacher Pedagogy Assessment Using MAIRCA with Geometric Mean Weighting</div>
+        <span class="pub-venue">ICIMCIS 2024 · IEEE</span>
+      </div>
+      <span class="pub-year">2024</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">018</span>
+      <div>
+        <div class="pub-title">AI-Driven Energy Forecasting for EV Charging Stations Powered by Solar and Wind Energy</div>
+        <span class="pub-venue">icSmartGrid 2024 · IEEE</span>
+      </div>
+      <span class="pub-year">2024</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">019</span>
+      <div>
+        <div class="pub-title">Combination of Multi-Attributive Ideal-Real Comparative Analysis and Rank Order Centroid in Supplier Performance Evaluation</div>
+        <span class="pub-venue">KLIK, 4(4), 2330–2341</span>
+      </div>
+      <span class="pub-year">2024</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">020</span>
+      <div>
+        <div class="pub-title">Comparative Analysis of MOORA and GRA with PIPRECIA Weighting in Selection of Warehouse Heads</div>
+        <span class="pub-venue">BEES, 4(3), 112–122</span>
+      </div>
+      <span class="pub-year">2024</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">021</span>
+      <div>
+        <div class="pub-title">Entropy and Additive Ratio Assessment Methods in Determining the Best Warehouse Location</div>
+        <span class="pub-venue">Bulletin of Computer Science Research, 4(4)</span>
+      </div>
+      <span class="pub-year">2024</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">022</span>
+      <div>
+        <div class="pub-title">MIS-Function in Automotive Sales Promotion Planning Using ML</div>
+        <span class="pub-venue">Library Progress International, 44(3)</span>
+      </div>
+      <span class="pub-year">2024</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">023</span>
+      <div>
+        <div class="pub-title">Combination of LOPCOW and MAIRCA in Determining Best Production Employees</div>
+        <span class="pub-venue">Jurnal Teknik Informatika, 5(3)</span>
+      </div>
+      <span class="pub-year">2024</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">024</span>
+      <div>
+        <div class="pub-title">Decision Support System for Best Honorary Teacher Performance Assessment Using LOPCOW and MARCOS</div>
+        <span class="pub-venue">JoSYC, 5(3), 578–590</span>
+      </div>
+      <span class="pub-year">2024</span>
+    </li>
+
+    <!-- 2023 -->
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">025</span>
+      <div>
+        <div class="pub-title">Role of AI in Decision Making and Its Socio-Psycho Impact</div>
+        <span class="pub-venue">Journal for ReAttach Therapy and Developmental Diversities, 6(5s)</span>
+      </div>
+      <span class="pub-year">2023</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">026</span>
+      <div>
+        <div class="pub-title">Applications of Quantum Computing in the Health Sector</div>
+        <span class="pub-venue">JDSIS, 1(1), 19–24</span>
+      </div>
+      <span class="pub-year">2023</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">027</span>
+      <div>
+        <div class="pub-title">Detection of Human Gender from Eyes Images Using DNN Approach</div>
+        <span class="pub-venue">Jurnal Teknoinfo, 17(2)</span>
+      </div>
+      <span class="pub-year">2023</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">028</span>
+      <div>
+        <div class="pub-title">Prediction and Diagnosis of Breast Cancer Using ML and Ensemble Classifiers</div>
+        <span class="pub-venue">Central Asian Journal of Mathematical Theory and Computer Sciences, 4(1)</span>
+      </div>
+      <span class="pub-year">2023</span>
+    </li>
+
+    <!-- 2022 -->
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">029</span>
+      <div>
+        <div class="pub-title">Advanced Face Detection Using ML and AI-Based Algorithm</div>
+        <span class="pub-venue">IC3I 2022 · IEEE</span>
+      </div>
+      <span class="pub-year">2022</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">030</span>
+      <div>
+        <div class="pub-title">Sales Prediction of Cardiac Products by Time Series and Deep Learning</div>
+        <span class="pub-venue">Int. Journal of Innovations in Science & Technology, 4(5)</span>
+      </div>
+      <span class="pub-year">2022</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">031</span>
+      <div>
+        <div class="pub-title">Brain Damage Detection Using ML Approach</div>
+        <span class="pub-venue">International Journal of Health Sciences, Special (7)</span>
+      </div>
+      <span class="pub-year">2022</span>
+    </li>
+    <li class="pub-item" data-year="pre">
+      <span class="pub-num">032</span>
+      <div>
+        <div class="pub-title">Cancer Prediction Using RNA Sequencing and Deep Learning</div>
+        <span class="pub-venue">Dubey, Mujoo, Hannan, Satpathy, Arshad, Manikandan</span>
+      </div>
+      <span class="pub-year">2022</span>
+    </li>
+
+  </ul>
+</section>
+
+<!-- ============= SKILLS / KEYWORDS ============= -->
+<section id="skills">
+  <div class="section-label">§ 06 / Toolkit & Keywords</div>
+  <h2 class="section-title">A vocabulary of <em>methods and machines</em>.</h2>
+  <p class="section-lede">Selected technical terrain &mdash; some daily, some occasional, all in active use.</p>
+
+  <div class="keywords">
+    <span class="kw featured">Quantum Computing</span>
+    <span class="kw featured">QUBO Formulation</span>
+    <span class="kw featured">QAOA</span>
+    <span class="kw featured">D-Wave Annealing</span>
+    <span class="kw featured">Variational Quantum Algorithms</span>
+    <span class="kw featured">Qiskit</span>
+    <span class="kw">Hybrid Optimization</span>
+    <span class="kw">SLSQP</span>
+    <span class="kw">Reinforcement Learning</span>
+    <span class="kw">Surrogate Modeling</span>
+    <span class="kw">Multi-Objective Optimization</span>
+    <span class="kw">Metaheuristics</span>
+    <span class="kw featured">Deep Learning</span>
+    <span class="kw">Computer Vision</span>
+    <span class="kw">Time-Series Forecasting</span>
+    <span class="kw">Federated Learning</span>
+    <span class="kw">Graph Neural Networks</span>
+    <span class="kw featured">Suspension Kinematics</span>
+    <span class="kw">3D Parametric Modeling</span>
+    <span class="kw">Mathematica</span>
+    <span class="kw">Python</span>
+    <span class="kw">PyTorch</span>
+    <span class="kw">TensorFlow</span>
+    <span class="kw">MATLAB</span>
+    <span class="kw">C++</span>
+    <span class="kw">Oracle SQL</span>
+    <span class="kw">CCNA</span>
+    <span class="kw">Decision Sciences</span>
+    <span class="kw">MCDM Methods</span>
+    <span class="kw">Blockchain</span>
+  </div>
+</section>
+
+</div>
+
+<!-- ============= CONTACT ============= -->
+<section class="contact" id="contact">
+  <div class="contact-grid">
+    <div>
+      <h2>Let's design the<br>next <em>experiment</em>.</h2>
+    </div>
+    <div class="contact-info">
+      <span class="label">Bologna</span>
+      <a href="mailto:muhammadwaqas.arsha2@unibo.it">muhammadwaqas.arsha2@unibo.it</a><br>
+
+      <span class="label">Maranello</span>
+      <a href="mailto:muhammadwaqas.arshad@ferrari.com">muhammadwaqas.arshad@ferrari.com</a><br>
+
+      <span class="label">Indiana</span>
+      <a href="mailto:arshad14@purdue.edu">arshad14@purdue.edu</a><br>
+
+      <span class="label">Personal</span>
+      <a href="mailto:muhammad.waqas.arshad.1@gmail.com">muhammad.waqas.arshad.1@gmail.com</a><br>
+
+      <span class="label">Elsewhere</span>
+      <a href="https://www.linkedin.com/in/muhammad-waqas-arshad-5359b4139/" target="_blank" rel="noopener">LinkedIn</a> ·
+      <a href="https://scholar.google.com/citations?user=OS3p2-0AAAAJ&hl=it" target="_blank" rel="noopener">Scholar</a> ·
+      <a href="https://orcid.org/0000-0003-3262-5833" target="_blank" rel="noopener">ORCID</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============= FOOT ============= -->
+<footer class="foot">
+  <div>© <span id="yr"></span> Muhammad Waqas Arshad — Built with care, hosted on GitHub Pages.</div>
+  <div class="foot-links">
+    <a href="#top">Back to top ↑</a>
+  </div>
+</footer>
+
+<script>
+// Year
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+// Publication tab filter
+const tabs = document.querySelectorAll('.pub-tab');
+const list = document.getElementById('pubList');
+tabs.forEach(tab => {
+  tab.addEventListener('click', () => {
+    tabs.forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    const filter = tab.dataset.filter;
+    list.classList.remove('show-all','show-2026','show-2025','show-pre','show-rev');
+    if (filter === 'all') {
+      list.classList.add('show-all');
+    } else {
+      list.classList.add('show-' + filter);
+    }
+  });
+});
+list.classList.add('show-all');
+
+// Fade-in observer
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+
+document.querySelectorAll('section, .exp-item, .research-card, .edu-item').forEach(el => {
+  el.classList.add('fade-in');
+  io.observe(el);
+});
+</script>
+
+</body>
+</html>
