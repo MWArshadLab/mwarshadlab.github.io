@@ -8,7 +8,7 @@ This repository hosts the source for my personal academic portfolio, served via 
 
 ## Sections
 
-1. Hero with hybrid quantum–classical orbital figure
+1. Hybrid quantum–classical orbital 
 2. About + research stats
 3. Affiliations & experience timeline
 4. Six research domains
@@ -20,4 +20,4 @@ This repository hosts the source for my personal academic portfolio, served via 
 
 ## License
 
-Content © Muhammad Waqas Arshad. Feel free to use the layout as a starting point for your own academic site.
+Content © Muhammad Waqas Arshad.
