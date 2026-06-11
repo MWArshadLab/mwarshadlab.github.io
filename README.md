@@ -4,7 +4,7 @@
 > University of Bologna · Ferrari S.p.A. · Purdue University
 
 This repository hosts the source for my personal academic portfolio, served via GitHub Pages.
- **Live site:** https://waqas.github.io 
+ **Live site:** https://mwarshadlab.github.io 
 
 ## Sections
 
