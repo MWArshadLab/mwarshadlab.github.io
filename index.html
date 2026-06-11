@@ -1,1653 +1,469 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Muhammad Waqas Arshad — Quantum Computing & AI Researcher</title>
-<meta name="description" content="PhD Researcher in Quantum Computing, AI, and Optimization. University of Bologna × Ferrari S.p.A. × Purdue University." />
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dr. Muhammad Waqas Arshad — Quantum Computing &amp; AI Researcher</title>
+<meta name="description" content="Dr. Muhammad Waqas Arshad — Ph.D. in Computer Science and Engineering (University of Bologna), researcher in quantum computing, hybrid quantum-classical optimization, and AI for engineering. Open for collaboration.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;0,9..144,900;1,9..144,400&family=JetBrains+Mono:wght@400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
-/* ============== TOKENS ============== */
-:root {
-  --ink:        #0b0d10;
-  --paper:      #f5f1e8;
-  --paper-2:    #ebe5d4;
-  --rule:       #1a1d22;
-  --accent:     #c8102e; /* Ferrari Rosso Corsa */
-  --accent-2:   #1d3f8a; /* Bologna deep blue */
-  --quantum:    #6a4eff;
-  --muted:      #5b5e64;
-  --soft:       #d9d2bf;
-  --grid-line:  rgba(11,13,16,0.06);
+:root{
+  --ink:#16202e;
+  --muted:#5a6678;
+  --paper:#fafbfc;
+  --panel:#ffffff;
+  --navy:#003366;
+  --navy-deep:#06294e;
+  --navy-tint:#eef3f8;
+  --rosso:#c8102e;
+  --line:#dde3ea;
+  --serif:'Newsreader',Georgia,serif;
+  --sans:'Inter',-apple-system,Segoe UI,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6;font-size:16px}
+a{color:var(--navy);text-decoration:none}
+a:hover{text-decoration:underline}
+:focus-visible{outline:3px solid var(--rosso);outline-offset:2px;border-radius:2px}
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.14em;text-transform:uppercase;color:var(--rosso);font-weight:600}
+section{padding:72px 0;border-top:1px solid var(--line)}
+h2{font-family:var(--serif);font-size:2rem;font-weight:600;margin:.4rem 0 1.6rem;color:var(--navy-deep)}
+h3{font-size:1.05rem;font-weight:600}
 
-  --serif:  'Fraunces', 'Iowan Old Style', Georgia, serif;
-  --sans:   'Inter Tight', -apple-system, BlinkMacSystemFont, sans-serif;
-  --mono:   'JetBrains Mono', ui-monospace, Menlo, monospace;
-}
+/* ---------- header ---------- */
+header.site{position:sticky;top:0;z-index:50;background:rgba(250,251,252,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:60px}
+.brand{font-family:var(--mono);font-weight:600;font-size:.9rem;color:var(--navy-deep);letter-spacing:.06em}
+.brand b{color:var(--rosso)}
+nav.links{display:flex;gap:22px;flex-wrap:wrap}
+nav.links a{font-size:.85rem;font-weight:500;color:var(--ink)}
+nav.links a:hover{color:var(--rosso);text-decoration:none}
 
-* { box-sizing: border-box; margin: 0; padding: 0; }
+/* ---------- hero ---------- */
+.hero{padding:84px 0 72px;border-top:none}
+.hero-grid{display:grid;grid-template-columns:1.25fr .9fr;gap:48px;align-items:center}
+.hero h1{font-family:var(--serif);font-size:clamp(2.4rem,5vw,3.4rem);line-height:1.08;font-weight:600;color:var(--navy-deep);margin:.5rem 0 1rem}
+.hero h1 em{font-style:italic;color:var(--rosso)}
+.lede{font-size:1.08rem;color:var(--muted);max-width:34rem;margin-bottom:1.6rem}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-bottom:2rem}
+.btn{display:inline-block;padding:.65rem 1.25rem;border-radius:4px;font-weight:600;font-size:.9rem;border:1.5px solid var(--navy)}
+.btn.primary{background:var(--navy);color:#fff}
+.btn.primary:hover{background:var(--navy-deep);text-decoration:none}
+.btn.ghost{color:var(--navy);background:transparent}
+.btn.ghost:hover{background:var(--navy-tint);text-decoration:none}
+.affil{display:flex;gap:0;flex-wrap:wrap;border-top:1px solid var(--line)}
+.affil div{padding:.8rem 1.4rem .8rem 0;margin-right:1.4rem}
+.affil .k{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.affil .v{font-size:.88rem;font-weight:600;color:var(--navy-deep)}
+.open-badge{display:inline-flex;align-items:center;gap:.5rem;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--navy-deep);background:var(--navy-tint);border:1px solid var(--line);border-radius:99px;padding:.35rem .9rem}
+.open-badge::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--rosso);animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.35}}
 
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: var(--sans);
-  background: var(--paper);
-  color: var(--ink);
-  line-height: 1.55;
-  font-size: 16px;
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  background-image:
-    radial-gradient(1px 1px at 20% 30%, rgba(11,13,16,0.04) 1px, transparent 0),
-    radial-gradient(1px 1px at 70% 80%, rgba(11,13,16,0.04) 1px, transparent 0);
-  background-size: 80px 80px, 120px 120px;
-}
-
-/* Subtle paper grain */
-body::before {
-  content: '';
-  position: fixed; inset: 0;
-  pointer-events: none;
-  opacity: 0.35;
-  z-index: 1;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-
-a { color: inherit; text-decoration: none; }
-
-/* ============== TOP BAR ============== */
-.topbar {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 32px;
-  background: rgba(245,241,232,0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--grid-line);
-}
-
-.brand {
-  font-family: var(--serif);
-  font-weight: 600;
-  font-size: 15px;
-  letter-spacing: -0.01em;
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.brand-mark {
-  width: 22px; height: 22px;
-  border: 1.5px solid var(--ink);
-  border-radius: 50%;
-  position: relative;
-  display: inline-block;
-}
-.brand-mark::after {
-  content: '';
-  position: absolute;
-  inset: 4px;
-  background: var(--accent);
-  border-radius: 50%;
-}
-.brand-mark::before {
-  content: '';
-  position: absolute;
-  inset: -3px;
-  border: 1px dashed var(--ink);
-  border-radius: 50%;
-  opacity: 0.35;
-  animation: spin 18s linear infinite;
-}
-@keyframes spin { to { transform: rotate(360deg); } }
-
-.nav {
-  display: flex;
-  gap: 28px;
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-}
-.nav a {
-  color: var(--muted);
-  transition: color .2s;
-  position: relative;
-}
-.nav a:hover { color: var(--ink); }
-.nav a::before {
-  content: counter(navi, decimal-leading-zero) ' / ';
-  counter-increment: navi;
-  opacity: 0.5;
-}
-.nav { counter-reset: navi; }
-
-@media (max-width: 720px) {
-  .nav { display: none; }
+/* hero figure */
+.fig{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:18px 18px 10px}
+.fig svg{width:100%;height:auto;display:block}
+.fig figcaption{font-family:var(--mono);font-size:.66rem;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;padding:10px 2px 6px;border-top:1px dashed var(--line);margin-top:12px}
+@media (prefers-reduced-motion:reduce){
+  .open-badge::before{animation:none}
+  html{scroll-behavior:auto}
 }
 
-/* ============== LAYOUT ============== */
-.shell {
-  position: relative;
-  z-index: 2;
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 0 32px;
-}
+/* ---------- about ---------- */
+.about-grid{display:grid;grid-template-columns:1.4fr .8fr;gap:48px}
+.about-grid p{margin-bottom:1rem;color:#2a3442}
+.facts{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:22px;height:fit-content}
+.facts dt{font-family:var(--mono);font-size:.66rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+.facts dt:first-child{margin-top:0}
+.facts dd{font-size:.92rem;font-weight:500}
 
-section {
-  padding: 96px 0;
-  border-bottom: 1px solid var(--grid-line);
-}
+/* ---------- research ---------- */
+.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:22px;border-top:3px solid var(--navy)}
+.card h3{font-family:var(--serif);font-size:1.15rem;color:var(--navy-deep);margin-bottom:.5rem}
+.card p{font-size:.88rem;color:var(--muted)}
 
-.section-label {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-bottom: 28px;
-}
-.section-label::before {
-  content: '';
-  width: 28px;
-  height: 1px;
-  background: var(--ink);
-}
+/* ---------- publications ---------- */
+.sel-pubs{display:grid;gap:14px;margin-bottom:48px}
+.sel{background:var(--panel);border:1px solid var(--line);border-left:4px solid var(--rosso);border-radius:4px;padding:18px 22px}
+.sel .t{font-family:var(--serif);font-size:1.08rem;font-weight:600;color:var(--navy-deep)}
+.sel .v{font-size:.85rem;color:var(--muted);margin-top:.25rem}
+.sel .v i{color:var(--rosso);font-style:normal;font-weight:600}
+.filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:22px}
+.filters button{font-family:var(--mono);font-size:.74rem;letter-spacing:.06em;padding:.45rem .95rem;border:1px solid var(--line);background:var(--panel);border-radius:99px;cursor:pointer;color:var(--muted)}
+.filters button.active{background:var(--navy);border-color:var(--navy);color:#fff}
+.pub-list{list-style:none}
+.pub-list li{padding:14px 0;border-bottom:1px solid var(--line);display:grid;grid-template-columns:64px 1fr;gap:18px}
+.pub-list .yr{font-family:var(--mono);font-size:.8rem;color:var(--muted);padding-top:2px}
+.pub-list .t{font-weight:600;font-size:.95rem}
+.pub-list .m{font-size:.84rem;color:var(--muted)}
+.tag{display:inline-block;font-family:var(--mono);font-size:.62rem;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);border-radius:3px;padding:.1rem .45rem;margin-left:.5rem;color:var(--navy);vertical-align:1px}
+.tag.review{color:var(--rosso);border-color:#f0c6cd}
+.count-note{font-size:.82rem;color:var(--muted);margin-top:14px;font-family:var(--mono)}
 
-.section-title {
-  font-family: var(--serif);
-  font-weight: 400;
-  font-size: clamp(34px, 5vw, 56px);
-  line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: 18px;
-  font-variation-settings: "opsz" 100;
-}
-.section-title em {
-  font-style: italic;
-  color: var(--accent);
-}
+/* ---------- training ---------- */
+.train{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.train div{background:var(--panel);border:1px solid var(--line);border-radius:6px;padding:16px 18px}
+.train .where{font-weight:600;font-size:.92rem;color:var(--navy-deep)}
+.train .what{font-size:.84rem;color:var(--muted)}
 
-.section-lede {
-  font-family: var(--serif);
-  font-size: 19px;
-  line-height: 1.55;
-  color: var(--muted);
-  max-width: 64ch;
-  margin-bottom: 56px;
-  font-style: italic;
-}
+/* ---------- service ---------- */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.plain{list-style:none}
+.plain li{padding:.45rem 0;border-bottom:1px dashed var(--line);font-size:.92rem}
+.plain li b{color:var(--navy-deep)}
 
-/* ============== HERO ============== */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 48px;
-  align-items: center;
-  padding-top: 110px;
-  padding-bottom: 80px;
-  position: relative;
-}
+/* ---------- news ---------- */
+.news{list-style:none}
+.news li{display:grid;grid-template-columns:110px 1fr;gap:18px;padding:.6rem 0;border-bottom:1px dashed var(--line)}
+.news .d{font-family:var(--mono);font-size:.76rem;color:var(--rosso);padding-top:3px}
 
-.hero::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(transparent 39px, var(--grid-line) 40px),
-    linear-gradient(90deg, transparent 39px, var(--grid-line) 40px);
-  background-size: 40px 40px;
-  opacity: 0.5;
-  pointer-events: none;
-  mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-  -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
-}
+/* ---------- collaborate ---------- */
+.collab{background:var(--navy-deep);color:#fff;border-radius:8px;padding:48px;display:grid;grid-template-columns:1.3fr .7fr;gap:32px;align-items:center}
+.collab h2{color:#fff;margin-bottom:.8rem}
+.collab p{color:#c7d3e2;font-size:.95rem}
+.collab .btn{border-color:#fff;color:#fff}
+.collab .btn.primary{background:var(--rosso);border-color:var(--rosso)}
+.collab .btn.primary:hover{background:#a40d26}
+.collab .btn.ghost:hover{background:rgba(255,255,255,.12)}
 
-.hero-meta {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--muted);
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-bottom: 28px;
-}
-.hero-meta span {
-  display: flex; align-items: center; gap: 8px;
-}
-.hero-meta span:not(:last-child)::after {
-  content: '';
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: var(--accent);
-}
+/* ---------- footer ---------- */
+footer{padding:48px 0 60px;border-top:1px solid var(--line)}
+.foot-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:32px}
+.foot-grid h3{font-family:var(--mono);font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;font-weight:600}
+.foot-grid li{list-style:none;padding:.2rem 0;font-size:.9rem}
+.copy{margin-top:40px;font-family:var(--mono);font-size:.72rem;color:var(--muted)}
 
-.hero h1 {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(48px, 7.5vw, 104px);
-  line-height: 0.95;
-  letter-spacing: -0.035em;
-  font-variation-settings: "opsz" 144;
-  margin-bottom: 34px;
+@media (max-width:880px){
+  .hero-grid,.about-grid,.two-col,.collab,.foot-grid{grid-template-columns:1fr}
+  .cards{grid-template-columns:1fr}
+  .train{grid-template-columns:1fr}
+  nav.links{display:none}
+  section{padding:56px 0}
 }
-.hero h1 .first { display: block; }
-.hero h1 .last {
-  display: block;
-  font-style: italic;
-  font-weight: 400;
-  color: var(--ink);
-  position: relative;
-  padding-left: 0.05em;
-}
-.hero h1 .last::after {
-  content: '.';
-  color: var(--accent);
-}
-
-.hero-tag {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 22px;
-  line-height: 1.45;
-  color: var(--ink);
-  max-width: 52ch;
-  margin-bottom: 38px;
-  font-weight: 400;
-}
-.hero-tag strong {
-  font-weight: 600;
-  font-style: normal;
-  background: linear-gradient(180deg, transparent 60%, rgba(200,16,46,0.18) 60%);
-  padding: 0 2px;
-}
-
-.hero-actions {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-.btn {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  padding: 14px 22px;
-  border: 1.5px solid var(--ink);
-  background: transparent;
-  color: var(--ink);
-  cursor: pointer;
-  transition: all .25s ease;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-}
-.btn:hover {
-  background: var(--ink);
-  color: var(--paper);
-  transform: translate(-2px, -2px);
-  box-shadow: 4px 4px 0 var(--accent);
-}
-.btn.primary {
-  background: var(--ink);
-  color: var(--paper);
-}
-.btn.primary:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-  box-shadow: 4px 4px 0 var(--ink);
-}
-.btn .arrow { transition: transform .25s; }
-.btn:hover .arrow { transform: translateX(3px); }
-
-/* Hero figure: orbital diagram */
-.hero-figure {
-  position: relative;
-  aspect-ratio: 1 / 1;
-  max-width: 500px;
-  margin-left: auto;
-}
-.orbit {
-  position: absolute;
-  inset: 0;
-  border: 1px solid var(--ink);
-  border-radius: 50%;
-}
-.orbit-2 {
-  inset: 14%;
-  border-style: dashed;
-  opacity: 0.6;
-  animation: spin 40s linear infinite reverse;
-}
-.orbit-3 {
-  inset: 30%;
-  border-color: var(--accent);
-  opacity: 0.5;
-  animation: spin 28s linear infinite;
-}
-.orbit-4 {
-  inset: 46%;
-  border-color: var(--quantum);
-  opacity: 0.7;
-}
-.electron {
-  position: absolute;
-  width: 14px; height: 14px;
-  border-radius: 50%;
-  background: var(--accent);
-  box-shadow: 0 0 0 4px rgba(200,16,46,0.12);
-}
-.e1 { top: -7px; left: 50%; transform: translateX(-50%); }
-.e2 { top: 14%; right: -7px; background: var(--quantum); box-shadow: 0 0 0 4px rgba(106,78,255,0.15); }
-.e3 { bottom: 14%; left: -7px; width: 10px; height: 10px; background: var(--ink); }
-.center-node {
-  position: absolute;
-  inset: 46%;
-  background: var(--ink);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--paper);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.05em;
-}
-.figure-tag {
-  position: absolute;
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-.tag-tl { top: -4px; left: -8px; }
-.tag-br { bottom: -4px; right: -8px; text-align: right; }
-.figure-tag::before { content: '— '; color: var(--accent); }
-
-@media (max-width: 880px) {
-  .hero { grid-template-columns: 1fr; padding-top: 130px; }
-  .hero-figure { max-width: 320px; margin: 24px auto 0; }
-}
-
-/* ============== MARQUEE ============== */
-.marquee {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 18px 0;
-  overflow: hidden;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
-}
-.marquee-track {
-  display: flex;
-  gap: 60px;
-  white-space: nowrap;
-  animation: scroll 40s linear infinite;
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 22px;
-  font-weight: 400;
-}
-.marquee-track span { display: inline-flex; align-items: center; gap: 60px; }
-.marquee-track span::after {
-  content: '✦';
-  color: var(--accent);
-  font-style: normal;
-}
-@keyframes scroll {
-  to { transform: translateX(-50%); }
-}
-
-/* ============== ABOUT ============== */
-.about-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 64px;
-}
-.about-prose p {
-  font-family: var(--serif);
-  font-size: 19px;
-  line-height: 1.7;
-  margin-bottom: 20px;
-  color: var(--ink);
-}
-.about-prose p:first-of-type::first-letter {
-  font-family: var(--serif);
-  font-weight: 700;
-  font-size: 64px;
-  float: left;
-  line-height: 0.85;
-  margin-right: 10px;
-  margin-top: 6px;
-  color: var(--accent);
-}
-.stats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--ink);
-  border: 1px solid var(--ink);
-  align-self: start;
-  margin-top: 18px;
-}
-.stat {
-  background: var(--paper);
-  padding: 28px 24px;
-  position: relative;
-}
-.stat-num {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: 56px;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--ink);
-}
-.stat-num em {
-  font-style: italic;
-  color: var(--accent);
-  font-weight: 400;
-}
-.stat-label {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: var(--muted);
-  margin-top: 12px;
-}
-.stat-corner {
-  position: absolute;
-  top: 10px; right: 12px;
-  font-family: var(--mono);
-  font-size: 9px;
-  color: var(--muted);
-}
-
-@media (max-width: 880px) {
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
-}
-
-/* ============== EXPERIENCE / TIMELINE ============== */
-.timeline {
-  position: relative;
-}
-.exp-item {
-  display: grid;
-  grid-template-columns: 180px 1fr 1fr;
-  gap: 32px;
-  padding: 32px 0;
-  border-top: 1px solid var(--ink);
-  align-items: start;
-  transition: background .3s;
-}
-.exp-item:last-child { border-bottom: 1px solid var(--ink); }
-.exp-item:hover {
-  background: var(--paper-2);
-  padding-left: 18px;
-  padding-right: 18px;
-}
-.exp-period {
-  font-family: var(--mono);
-  font-size: 12px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  padding-top: 4px;
-}
-.exp-period strong {
-  color: var(--ink);
-  font-weight: 600;
-  display: block;
-  margin-bottom: 4px;
-  font-size: 14px;
-}
-.exp-role {
-  font-family: var(--serif);
-  font-size: 24px;
-  font-weight: 500;
-  line-height: 1.2;
-  letter-spacing: -0.01em;
-}
-.exp-org {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-top: 8px;
-}
-.exp-desc {
-  font-family: var(--serif);
-  font-size: 16px;
-  line-height: 1.6;
-  color: var(--muted);
-}
-
-@media (max-width: 880px) {
-  .exp-item { grid-template-columns: 1fr; gap: 12px; padding: 24px 0; }
-  .exp-item:hover { padding-left: 0; padding-right: 0; }
-  .exp-role { font-size: 20px; }
-}
-
-/* ============== RESEARCH GRID ============== */
-.research-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1px;
-  background: var(--ink);
-  border: 1px solid var(--ink);
-}
-.research-card {
-  background: var(--paper);
-  padding: 36px 28px;
-  position: relative;
-  transition: background .3s;
-  cursor: default;
-}
-.research-card:hover {
-  background: var(--ink);
-  color: var(--paper);
-}
-.research-card:hover .research-num,
-.research-card:hover .research-icon {
-  color: var(--accent);
-}
-.research-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--muted);
-  margin-bottom: 32px;
-  display: flex;
-  justify-content: space-between;
-}
-.research-icon {
-  font-family: var(--serif);
-  font-style: italic;
-  font-size: 64px;
-  line-height: 1;
-  color: var(--accent);
-  margin-bottom: 18px;
-  display: block;
-  font-weight: 300;
-}
-.research-title {
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 500;
-  line-height: 1.2;
-  margin-bottom: 14px;
-  letter-spacing: -0.01em;
-}
-.research-desc {
-  font-size: 14px;
-  line-height: 1.55;
-  color: var(--muted);
-  transition: color .3s;
-}
-.research-card:hover .research-desc {
-  color: var(--soft);
-}
-
-@media (max-width: 880px) {
-  .research-grid { grid-template-columns: 1fr; }
-}
-
-/* ============== EDUCATION ============== */
-.edu-list {
-  display: flex;
-  flex-direction: column;
-}
-.edu-item {
-  display: grid;
-  grid-template-columns: 80px 1fr auto;
-  gap: 28px;
-  padding: 28px 0;
-  border-top: 1px solid var(--grid-line);
-  align-items: baseline;
-}
-.edu-item:first-child { border-top: 1px solid var(--ink); }
-.edu-item:last-child { border-bottom: 1px solid var(--ink); }
-.edu-year {
-  font-family: var(--mono);
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink);
-}
-.edu-degree {
-  font-family: var(--serif);
-  font-size: 22px;
-  font-weight: 500;
-  letter-spacing: -0.01em;
-  margin-bottom: 4px;
-}
-.edu-where {
-  font-size: 13px;
-  color: var(--muted);
-  font-family: var(--mono);
-  letter-spacing: 0.04em;
-}
-.edu-tag {
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--accent);
-  border: 1px solid var(--accent);
-  padding: 5px 10px;
-  white-space: nowrap;
-}
-
-@media (max-width: 720px) {
-  .edu-item { grid-template-columns: 1fr; gap: 6px; }
-  .edu-tag { justify-self: start; margin-top: 6px; }
-}
-
-/* ============== PUBLICATIONS ============== */
-.pub-tabs {
-  display: flex;
-  gap: 4px;
-  margin-bottom: 32px;
-  border-bottom: 1px solid var(--ink);
-  flex-wrap: wrap;
-}
-.pub-tab {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 12px 18px;
-  cursor: pointer;
-  background: transparent;
-  border: none;
-  color: var(--muted);
-  border-bottom: 2px solid transparent;
-  margin-bottom: -1px;
-  transition: all .2s;
-}
-.pub-tab:hover { color: var(--ink); }
-.pub-tab.active {
-  color: var(--ink);
-  border-bottom-color: var(--accent);
-}
-.pub-tab .count {
-  font-size: 9px;
-  margin-left: 6px;
-  opacity: 0.6;
-}
-
-.pub-list { list-style: none; }
-.pub-item {
-  display: grid;
-  grid-template-columns: 56px 1fr 130px;
-  gap: 24px;
-  padding: 22px 0;
-  border-top: 1px solid var(--grid-line);
-  align-items: baseline;
-  transition: background .25s;
-}
-.pub-item:first-child { border-top: 1px solid var(--ink); }
-.pub-item:hover { background: var(--paper-2); padding-left: 12px; padding-right: 12px; }
-.pub-num {
-  font-family: var(--mono);
-  font-size: 11px;
-  color: var(--muted);
-  letter-spacing: 0.05em;
-}
-.pub-title {
-  font-family: var(--serif);
-  font-size: 17px;
-  line-height: 1.4;
-  font-weight: 500;
-  letter-spacing: -0.005em;
-}
-.pub-venue {
-  display: block;
-  font-size: 13px;
-  color: var(--muted);
-  margin-top: 6px;
-  font-family: var(--sans);
-  font-style: italic;
-}
-.pub-year {
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  color: var(--muted);
-  text-align: right;
-  white-space: nowrap;
-}
-.pub-year .badge {
-  display: inline-block;
-  padding: 3px 7px;
-  border: 1px solid var(--accent);
-  color: var(--accent);
-  margin-left: 6px;
-  font-size: 9px;
-  letter-spacing: 0.1em;
-}
-
-.pub-list[data-tab]:not([data-tab="all"]) .pub-item { display: none; }
-.pub-list.show-all .pub-item { display: grid; }
-.pub-list.show-2026 .pub-item[data-year="2026"] { display: grid; }
-.pub-list.show-2025 .pub-item[data-year="2025"] { display: grid; }
-.pub-list.show-pre  .pub-item[data-year="pre"]  { display: grid; }
-.pub-list.show-rev  .pub-item[data-year="rev"]  { display: grid; }
-.pub-list:not(.show-all):not(.show-2026):not(.show-2025):not(.show-pre):not(.show-rev) .pub-item { display: grid; }
-
-@media (max-width: 720px) {
-  .pub-item { grid-template-columns: 1fr; gap: 6px; }
-  .pub-num, .pub-year { font-size: 10px; }
-  .pub-year { text-align: left; }
-}
-
-/* ============== SKILLS / KEYWORDS ============== */
-.keywords {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-.kw {
-  font-family: var(--mono);
-  font-size: 12px;
-  padding: 8px 14px;
-  border: 1px solid var(--ink);
-  background: var(--paper);
-  transition: all .2s;
-  cursor: default;
-}
-.kw:hover {
-  background: var(--ink);
-  color: var(--paper);
-  transform: translate(-2px, -2px);
-  box-shadow: 2px 2px 0 var(--accent);
-}
-.kw.featured {
-  background: var(--ink);
-  color: var(--paper);
-}
-.kw.featured:hover { background: var(--accent); border-color: var(--accent); }
-
-/* ============== CONTACT ============== */
-.contact {
-  background: var(--ink);
-  color: var(--paper);
-  margin: 0 -32px;
-  padding: 96px 64px;
-  border: none;
-  position: relative;
-  overflow: hidden;
-}
-.contact::before {
-  content: 'AVAILABLE FOR COLLABORATION';
-  position: absolute;
-  top: 24px; left: 50%;
-  transform: translateX(-50%);
-  font-family: var(--mono);
-  font-size: 10px;
-  letter-spacing: 0.4em;
-  color: var(--accent);
-}
-.contact-grid {
-  max-width: 1280px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1.4fr 1fr;
-  gap: 64px;
-  align-items: end;
-}
-.contact h2 {
-  font-family: var(--serif);
-  font-weight: 300;
-  font-size: clamp(48px, 8vw, 110px);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  font-variation-settings: "opsz" 144;
-}
-.contact h2 em {
-  font-style: italic;
-  color: var(--accent);
-}
-.contact-info {
-  font-family: var(--mono);
-  font-size: 13px;
-  line-height: 2;
-}
-.contact-info a {
-  border-bottom: 1px solid rgba(245,241,232,0.3);
-  transition: border-color .2s;
-  word-break: break-all;
-}
-.contact-info a:hover { border-bottom-color: var(--accent); }
-.contact-info .label {
-  display: block;
-  font-size: 10px;
-  letter-spacing: 0.18em;
-  color: var(--accent);
-  margin-top: 16px;
-  margin-bottom: 4px;
-}
-.contact-info .label:first-child { margin-top: 0; }
-
-@media (max-width: 880px) {
-  .contact { padding: 64px 32px; margin: 0 -32px; }
-  .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-}
-
-/* ============== FOOTER ============== */
-.foot {
-  padding: 32px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.06em;
-  color: var(--muted);
-  border-top: 1px solid var(--grid-line);
-}
-.foot-links { display: flex; gap: 22px; }
-.foot-links a:hover { color: var(--accent); }
-
-@media (max-width: 720px) {
-  .foot { flex-direction: column; gap: 12px; text-align: center; }
-}
-
-/* ============== UTILITIES & ANIMATION ============== */
-.fade-in {
-  opacity: 0;
-  transform: translateY(24px);
-  transition: opacity .8s ease, transform .8s ease;
-}
-.fade-in.visible { opacity: 1; transform: none; }
-
-::selection { background: var(--accent); color: var(--paper); }
 </style>
 </head>
-
 <body>
 
-<!-- ============= TOPBAR ============= -->
-<nav class="topbar">
-  <div class="brand">
-    <span class="brand-mark"></span>
-    <span>Dr. Muhammad Waqas Arshad (PhD)</span>
+<header class="site">
+  <div class="wrap nav">
+    <div class="brand">M.W.<b>ARSHAD</b> · LAB</div>
+    <nav class="links" aria-label="Main">
+      <a href="#about">About</a>
+      <a href="#research">Research</a>
+      <a href="#publications">Publications</a>
+      <a href="#training">Training</a>
+      <a href="#service">Service</a>
+      <a href="#news">News</a>
+      <a href="#contact">Contact</a>
+    </nav>
   </div>
-  <div class="nav">
-    <a href="#about">About</a>
-    <a href="#work">Work</a>
-    <a href="#research">Research</a>
-    <a href="#publications">Papers</a>
-    <a href="#contact">Contact</a>
-  </div>
-</nav>
+</header>
 
-<div class="shell">
-
-<!-- ============= HERO ============= -->
-<section class="hero" id="top">
-  <div>
-    <div class="hero-meta">
-      <span>Bologna · Maranello · Indiana</span>
-      <span>Est. 2022</span>
-      <span>PhD, 2026</span>
-    </div>
-
-    <h1>
-      <span class="first">Muhammad</span>
-      <span class="first">Waqas</span>
-      <span class="last">Arshad</span>
-    </h1>
-
-   <p class="hero-tag">
-  Computer scientist working across
-  <strong>quantum computing</strong>,
-  <strong>artificial intelligence</strong>, and
-  <strong>hybrid optimization</strong> &mdash;
-  with research spanning time-series forecasting, computer vision,
-  healthcare AI, and engineering design.
-   </p>
-
-    <div class="hero-actions">
-      <a class="btn primary" href="#publications">
-        Read research <span class="arrow">→</span>
-      </a>
-      <a class="btn" href="mailto:muhammadwaqas.arsha2@unibo.it">
-        Get in touch <span class="arrow">→</span>
-      </a>
-    </div>
-  </div>
-
-  
-</section>
-
-</div>
-
-<!-- ============= MARQUEE ============= -->
-<div class="marquee" aria-hidden="true">
-  <div class="marquee-track">
-    <span>University of Bologna</span>
-    <span>Ferrari S.p.A.</span>
-    <span>Purdue University</span>
-    <span>IBM Qiskit Advocate</span>
-    <span>Brookhaven National Laboratory</span>
-    <span>Forschungszentrum Jülich</span>
-    <span>University of Bologna</span>
-    <span>Ferrari S.p.A.</span>
-    <span>Purdue University</span>
-    <span>IBM Qiskit Advocate</span>
-    <span>Brookhaven National Laboratory</span>
-    <span>Forschungszentrum Jülich</span>
-  </div>
-</div>
-
-<div class="shell">
-
-<!-- ============= ABOUT ============= -->
-<section id="about">
-  <div class="section-label">§ 01 / About</div>
-  <h2 class="section-title">A bridge between <em>quantum theory</em><br>and <em>real-world machines</em>.</h2>
-
-  <div class="about-grid">
-    <div class="about-prose">
-      <p>
-        I hold a PhD in Computer Science and Engineering from the University of Bologna,
-        completed in close collaboration with Ferrari S.p.A. on quantum computing applied to
-        the kinematic and geometric optimization of double-wishbone suspension systems.
-        Successfully defended in March 2026, my thesis explores how QUBO formulations,
-        variational quantum circuits, and classical metaheuristics can co-exist in a
-        single hybrid pipeline.
-      </p>
-      <p>
-        I spent eight months as a Visiting Research Scholar at Purdue University Fort Wayne
-        and serve as an IBM Qiskit Advocate. Beyond suspension geometry, my work spans
-        time-series forecasting for healthcare, computer vision, federated learning, and
-        decision-support systems &mdash; with thirty-plus peer-reviewed publications across
-        Springer, IEEE, MDPI, Wiley, and Elsevier venues.
-      </p>
-    </div>
-
-    <div class="stats">
-      <div class="stat">
-        <div class="stat-num">30<em>+</em></div>
-        <div class="stat-label">Peer-reviewed papers</div>
-        <div class="stat-corner">a</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">3<em>×</em></div>
-        <div class="stat-label">Continents researched</div>
-        <div class="stat-corner">b</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">11</div>
-        <div class="stat-label">Journal & conf. reviews</div>
-        <div class="stat-corner">c</div>
-      </div>
-      <div class="stat">
-        <div class="stat-num">5<em>×</em></div>
-        <div class="stat-label">Quantum summer schools</div>
-        <div class="stat-corner">d</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============= EXPERIENCE ============= -->
-<section id="work">
-  <div class="section-label">§ 02 / Affiliations</div>
-  <h2 class="section-title">Where the work <em>happens</em>.</h2>
-  <p class="section-lede">Selected positions across academia and industry &mdash; from Maranello's design floor to Bologna's lecture halls and the cleanrooms of Brookhaven.</p>
-
-  <div class="timeline">
-
-    <div class="exp-item">
-      <div class="exp-period"><strong>2024 — Present</strong>Active</div>
-      <div>
-        <div class="exp-role">IBM Qiskit Advocate</div>
-        <div class="exp-org">IBM Quantum</div>
-      </div>
-      <div class="exp-desc">Advancing quantum computing literacy and contributing to growth of the Qiskit ecosystem in collaboration with IBM.</div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-period"><strong>2024 — 2025</strong>8 months</div>
-      <div>
-        <div class="exp-role">Visiting Research Scholar</div>
-        <div class="exp-org">Purdue University · Fort Wayne, IN, USA</div>
-      </div>
-      <div class="exp-desc">Quantum computing, machine learning, and computer vision applied to time-series and automotive suspension design; integration with 2D / 3D modeling pipelines.</div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-period"><strong>Nov 2022 — Oct 2025</strong>3 years</div>
-      <div>
-        <div class="exp-role">PhD Research Scholar</div>
-        <div class="exp-org">Ferrari S.p.A. · Maranello, Italy</div>
-      </div>
-      <div class="exp-desc">Joint PhD program with the University of Bologna. Defined and solved Ferrari-set optimization problems using hybrid quantum–classical algorithms. Successfully defended March 2026.</div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-period"><strong>2018 — 2023</strong>5 years</div>
-      <div>
-        <div class="exp-role">Head of IT, Warehouse & Research</div>
-        <div class="exp-org">Norwich Pharmaceuticals · Islamabad</div>
-      </div>
-      <div class="exp-desc">Led IT infrastructure, inventory operations, import compliance, and research coordination supporting drug discovery and product development.</div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-period"><strong>2019 — 2023</strong>4 years</div>
-      <div>
-        <div class="exp-role">Head of Store & IT Consultant</div>
-        <div class="exp-org">PROMED International · Islamabad</div>
-      </div>
-      <div class="exp-desc">Warehouse oversight, financial forecasting support, software development for medical-device imports including stents and balloons.</div>
-    </div>
-
-    <div class="exp-item">
-      <div class="exp-period"><strong>2018 — Present</strong>Ongoing</div>
-      <div>
-        <div class="exp-role">Head, General Secretariat</div>
-        <div class="exp-org">Internet Society · Blockchain SIG</div>
-      </div>
-      <div class="exp-desc">Drafting SOPs and frameworks for ethical use of blockchain technology; managing administrative operations.</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============= RESEARCH AREAS ============= -->
-<section id="research">
-  <div class="section-label">§ 03 / Research Domains</div>
-  <h2 class="section-title">Six threads that <em>knot together</em>.</h2>
-  <p class="section-lede">My work is unified by one question: how do we make optimization tractable when the design space is geometric, continuous, and physically constrained?</p>
-
-  <div class="research-grid">
-
-    <div class="research-card">
-      <div class="research-num"><span>01</span><span>↗</span></div>
-      <span class="research-icon">ψ</span>
-      <h3 class="research-title">Quantum Computing</h3>
-      <p class="research-desc">QUBO formulations, QAOA, variational quantum algorithms, and D-Wave annealing for combinatorial design problems.</p>
-    </div>
-
-    <div class="research-card">
-      <div class="research-num"><span>02</span><span>↗</span></div>
-      <span class="research-icon">∇</span>
-      <h3 class="research-title">Hybrid Optimization</h3>
-      <p class="research-desc">QUBO–SQP and surrogate-assisted frameworks bridging discrete quantum sampling with continuous classical refinement.</p>
-    </div>
-
-    <div class="research-card">
-      <div class="research-num"><span>03</span><span>↗</span></div>
-      <span class="research-icon">⚙</span>
-      <h3 class="research-title">Automotive Kinematics</h3>
-      <p class="research-desc">3D parametric modeling and multi-objective optimization of double-wishbone and five-link suspensions.</p>
-    </div>
-
-    <div class="research-card">
-      <div class="research-num"><span>04</span><span>↗</span></div>
-      <span class="research-icon">∂</span>
-      <h3 class="research-title">Deep Learning</h3>
-      <p class="research-desc">Time-series forecasting, computer vision, and reinforcement learning for design and clinical decision support.</p>
-    </div>
-
-    <div class="research-card">
-      <div class="research-num"><span>05</span><span>↗</span></div>
-      <span class="research-icon">∑</span>
-      <h3 class="research-title">Decision Sciences</h3>
-      <p class="research-desc">MCDM techniques (MAIRCA, MOORA, MARCOS) for evaluation and ranking in operational and educational settings.</p>
-    </div>
-
-    <div class="research-card">
-      <div class="research-num"><span>06</span><span>↗</span></div>
-      <span class="research-icon">⌬</span>
-      <h3 class="research-title">Quantum-ML in Healthcare</h3>
-      <p class="research-desc">Quantum machine learning for cardiac phenotyping, cancer prediction, and biomedical signal classification.</p>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============= EDUCATION ============= -->
-<section id="education">
-  <div class="section-label">§ 04 / Education</div>
-  <h2 class="section-title">A decade of <em>training</em>.</h2>
-
-  <div class="edu-list">
-
-    <div class="edu-item">
-      <div class="edu-year">2022 — 26</div>
-      <div>
-        <div class="edu-degree">Ph.D. Computer Science & Engineering</div>
-        <div class="edu-where">University of Bologna, Italy · with Ferrari S.p.A.</div>
-      </div>
-      <div class="edu-tag">Awarded Mar 2026</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="edu-year">2025</div>
-      <div>
-        <div class="edu-degree">Quantum Information Science & Engineering</div>
-        <div class="edu-where">Brookhaven National Lab · Virginia Tech · C2QA · DOE</div>
-      </div>
-      <div class="edu-tag">Program</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="edu-year">2023</div>
-      <div>
-        <div class="edu-degree">ADEQUATE — End-to-End Quantum Computing</div>
-        <div class="edu-where">EIT Deep Tech Talent · CTU Prague · Univ. of Latvia · QWorld</div>
-      </div>
-      <div class="edu-tag">Workshop</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="edu-year">2023</div>
-      <div>
-        <div class="edu-degree">Quantum Information Processing</div>
-        <div class="edu-where">Forschungszentrum Jülich · JUNIQ, Germany</div>
-      </div>
-      <div class="edu-tag">Summer School</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="edu-year">2023</div>
-      <div>
-        <div class="edu-degree">European Summer School on AI (ESSAI)</div>
-        <div class="edu-where">University of Ljubljana · TAILOR Network</div>
-      </div>
-      <div class="edu-tag">Summer School</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="edu-year">2023</div>
-      <div>
-        <div class="edu-degree">Quantum Learning Theory (QMATH Masterclass)</div>
-        <div class="edu-where">PhD School of SCIENCE, University of Copenhagen</div>
-      </div>
-      <div class="edu-tag">Masterclass</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="edu-year">2019 — 22</div>
-      <div>
-        <div class="edu-degree">M.S. Artificial Intelligence (Scholarship)</div>
-        <div class="edu-where">Air University, Islamabad, Pakistan</div>
-      </div>
-      <div class="edu-tag">M.S.</div>
-    </div>
-
-    <div class="edu-item">
-      <div class="edu-year">2015 — 19</div>
-      <div>
-        <div class="edu-degree">B.S. Computer Science (Scholarship)</div>
-        <div class="edu-where">PMAS Arid Agriculture University (UIIT), Rawalpindi</div>
-      </div>
-      <div class="edu-tag">B.S.</div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ============= PUBLICATIONS ============= -->
-<section id="publications">
-  <div class="section-label">§ 05 / Selected Publications</div>
-  <h2 class="section-title">Thirty-plus papers, <em>five active manuscripts</em>.</h2>
-  <p class="section-lede">Filter by year. The full list with citations and DOIs lives on Google Scholar &mdash; this is a curated view of the work I am proudest of.</p>
-
-  <div class="pub-tabs">
-    <button class="pub-tab active" data-filter="all">All<span class="count">35+</span></button>
-    <button class="pub-tab" data-filter="rev">Under review<span class="count">05</span></button>
-    <button class="pub-tab" data-filter="2026">2026<span class="count">03</span></button>
-    <button class="pub-tab" data-filter="2025">2025<span class="count">14</span></button>
-    <button class="pub-tab" data-filter="pre">Earlier<span class="count">15+</span></button>
-  </div>
-
-  <ul class="pub-list" id="pubList">
-
-    <!-- 2026 -->
-    <li class="pub-item" data-year="2026">
-      <span class="pub-num">001</span>
-      <div>
-        <div class="pub-title">Constraint-Guided Probabilistic Digital Twin Based Microclimate Forecasting Using Latent Stochastic Dynamics</div>
-        <span class="pub-venue">IEEE WoWMoM 2026 · Ashraf, Bononi, Arshad et al.</span>
-      </div>
-      <span class="pub-year">2026<span class="badge">Accepted</span></span>
-    </li>
-    <li class="pub-item" data-year="2026">
-      <span class="pub-num">002</span>
-      <div>
-        <div class="pub-title">Gradient-Based Camber Optimization of a Five-Link Suspension: Modeling, Analysis, and Benchmarking</div>
-        <span class="pub-venue">IEEE iCoMET 2026</span>
-      </div>
-      <span class="pub-year">2026<span class="badge">Accepted</span></span>
-    </li>
-    <li class="pub-item" data-year="2026">
-      <span class="pub-num">003</span>
-      <div>
-        <div class="pub-title">HPC: A Computational Benchmark of Classical, Parallel, and Hybrid Metaheuristics for QUBO-Based Suspension Geometry Optimization</div>
-        <span class="pub-venue">Machines, 14(2), 248</span>
-      </div>
-      <span class="pub-year">2026</span>
-    </li>
-
-    <!-- Under review -->
-    <li class="pub-item" data-year="rev">
-      <span class="pub-num">R01</span>
-      <div>
-        <div class="pub-title">A Surrogate-Assisted Multi-Objective Optimization Framework for the Kinematic Design of 3D Double-Wishbone Suspension</div>
-        <span class="pub-venue">SN Computer Science, Springer</span>
-      </div>
-      <span class="pub-year">Under review</span>
-    </li>
-    <li class="pub-item" data-year="rev">
-      <span class="pub-num">R02</span>
-      <div>
-        <div class="pub-title">A Hybrid Variational Quantum-Classical Framework for Multi-Objective Design Optimization of DWS Kinematics</div>
-        <span class="pub-venue">JESTECH, Elsevier</span>
-      </div>
-      <span class="pub-year">Under review</span>
-    </li>
-    <li class="pub-item" data-year="rev">
-      <span class="pub-num">R03</span>
-      <div>
-        <div class="pub-title">Calibration-Aware Gating for Budgeted LLM Supervision in Graph Neural Network Link Prediction</div>
-        <span class="pub-venue">Discover Computing</span>
-      </div>
-      <span class="pub-year">Under review</span>
-    </li>
-    <li class="pub-item" data-year="rev">
-      <span class="pub-num">R04</span>
-      <div>
-        <div class="pub-title">From Chat to Graph: Evaluating Interface Legibility for Human Oversight of Multi-Agent AI Systems</div>
-        <span class="pub-venue">Human-Centric Intelligent Systems</span>
-      </div>
-      <span class="pub-year">Under review</span>
-    </li>
-    <li class="pub-item" data-year="rev">
-      <span class="pub-num">R05</span>
-      <div>
-        <div class="pub-title">Towards LLM-Guided Personalized Cardiac Treatment Optimization: A Hybrid Symbolic-Numerical Framework</div>
-        <span class="pub-venue">Health Information Science and Systems</span>
-      </div>
-      <span class="pub-year">Under review</span>
-    </li>
-
-    <!-- 2025 -->
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">004</span>
-      <div>
-        <div class="pub-title">Design and Multi-Objective Kinematic Optimization of 3D Double Wishbone Suspensions Using an Ensemble Optimization</div>
-        <span class="pub-venue">Applied Research, Wiley</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">005</span>
-      <div>
-        <div class="pub-title">A Reinforcement Learning Approach for the Kinematic Optimization of Double-Wishbone Suspension Geometry</div>
-        <span class="pub-venue">32nd ICSEng, Springer</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">006</span>
-      <div>
-        <div class="pub-title">Double Wishbone Suspension: A Computational Framework for Parametric 3D Kinematic Modeling and Simulation Using Mathematica</div>
-        <span class="pub-venue">Technologies, 13(8), 332</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">007</span>
-      <div>
-        <div class="pub-title">An Advanced Hybrid Optimization Algorithm for Vehicle Suspension Design Using a QUBO-SQP Framework</div>
-        <span class="pub-venue">Mathematics, 13, 3843</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">008</span>
-      <div>
-        <div class="pub-title">Quantum Computing in the Automotive Industry: Survey, Challenges, and Perspectives</div>
-        <span class="pub-venue">The Journal of Supercomputing, 81(10), 1–45</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">009</span>
-      <div>
-        <div class="pub-title">Multi-Objective Optimization of Independent Automotive Suspension by AI and Quantum Approaches: A Systematic Review</div>
-        <span class="pub-venue">Machines, 13(3)</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">010</span>
-      <div>
-        <div class="pub-title">A Hybrid Quantum-Classical Approach Using D-Wave and SLSQP for Double Wishbone Suspension System Optimization</div>
-        <span class="pub-venue">IEEE Conference on Artificial Intelligence (CAI)</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">011</span>
-      <div>
-        <div class="pub-title">Quantum Machine Learning for Classification of Left Ventricular Ejection Fraction Phenotypes from Echocardiograms</div>
-        <span class="pub-venue">IEEE-EMBS BHI · Decoodt, Arshad, Morissens, Liu</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">012</span>
-      <div>
-        <div class="pub-title">YOLOv11-SAMNet: A Hybrid Detection and Segmentation Framework for Urine Sediment Analysis</div>
-        <span class="pub-venue">ICCSA · Springer</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">013</span>
-      <div>
-        <div class="pub-title">Cutting-Edge Malware Detection in Healthcare: Leveraging Cascaded-AlexNet Model</div>
-        <span class="pub-venue">ICCSA · Springer</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">014</span>
-      <div>
-        <div class="pub-title">A Hybrid Genetic Algorithm and Hidden Markov Model-Based Hashing Technique for Robust Data Security</div>
-        <span class="pub-venue">Journal of Cyber Security and Risk Auditing</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-    <li class="pub-item" data-year="2025">
-      <span class="pub-num">015</span>
-      <div>
-        <div class="pub-title">An Integrated Federated Learning Framework with Optimization for Industrial IoT Intrusion Detection</div>
-        <span class="pub-venue">SHIFRA</span>
-      </div>
-      <span class="pub-year">2025</span>
-    </li>
-
-    <!-- 2024 -->
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">016</span>
-      <div>
-        <div class="pub-title">Optimization of Double Wishbone Suspension: Evaluating the Performance of Classes of Algorithms</div>
-        <span class="pub-venue">ICAMCS · IEEE Computer Society</span>
-      </div>
-      <span class="pub-year">2024</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">017</span>
-      <div>
-        <div class="pub-title">Decision Support System in Teacher Pedagogy Assessment Using MAIRCA with Geometric Mean Weighting</div>
-        <span class="pub-venue">ICIMCIS 2024 · IEEE</span>
-      </div>
-      <span class="pub-year">2024</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">018</span>
-      <div>
-        <div class="pub-title">AI-Driven Energy Forecasting for EV Charging Stations Powered by Solar and Wind Energy</div>
-        <span class="pub-venue">icSmartGrid 2024 · IEEE</span>
-      </div>
-      <span class="pub-year">2024</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">019</span>
-      <div>
-        <div class="pub-title">Combination of Multi-Attributive Ideal-Real Comparative Analysis and Rank Order Centroid in Supplier Performance Evaluation</div>
-        <span class="pub-venue">KLIK, 4(4), 2330–2341</span>
-      </div>
-      <span class="pub-year">2024</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">020</span>
-      <div>
-        <div class="pub-title">Comparative Analysis of MOORA and GRA with PIPRECIA Weighting in Selection of Warehouse Heads</div>
-        <span class="pub-venue">BEES, 4(3), 112–122</span>
-      </div>
-      <span class="pub-year">2024</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">021</span>
-      <div>
-        <div class="pub-title">Entropy and Additive Ratio Assessment Methods in Determining the Best Warehouse Location</div>
-        <span class="pub-venue">Bulletin of Computer Science Research, 4(4)</span>
-      </div>
-      <span class="pub-year">2024</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">022</span>
-      <div>
-        <div class="pub-title">MIS-Function in Automotive Sales Promotion Planning Using ML</div>
-        <span class="pub-venue">Library Progress International, 44(3)</span>
-      </div>
-      <span class="pub-year">2024</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">023</span>
-      <div>
-        <div class="pub-title">Combination of LOPCOW and MAIRCA in Determining Best Production Employees</div>
-        <span class="pub-venue">Jurnal Teknik Informatika, 5(3)</span>
-      </div>
-      <span class="pub-year">2024</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">024</span>
-      <div>
-        <div class="pub-title">Decision Support System for Best Honorary Teacher Performance Assessment Using LOPCOW and MARCOS</div>
-        <span class="pub-venue">JoSYC, 5(3), 578–590</span>
-      </div>
-      <span class="pub-year">2024</span>
-    </li>
-
-    <!-- 2023 -->
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">025</span>
-      <div>
-        <div class="pub-title">Role of AI in Decision Making and Its Socio-Psycho Impact</div>
-        <span class="pub-venue">Journal for ReAttach Therapy and Developmental Diversities, 6(5s)</span>
-      </div>
-      <span class="pub-year">2023</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">026</span>
-      <div>
-        <div class="pub-title">Applications of Quantum Computing in the Health Sector</div>
-        <span class="pub-venue">JDSIS, 1(1), 19–24</span>
-      </div>
-      <span class="pub-year">2023</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">027</span>
-      <div>
-        <div class="pub-title">Detection of Human Gender from Eyes Images Using DNN Approach</div>
-        <span class="pub-venue">Jurnal Teknoinfo, 17(2)</span>
-      </div>
-      <span class="pub-year">2023</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">028</span>
-      <div>
-        <div class="pub-title">Prediction and Diagnosis of Breast Cancer Using ML and Ensemble Classifiers</div>
-        <span class="pub-venue">Central Asian Journal of Mathematical Theory and Computer Sciences, 4(1)</span>
-      </div>
-      <span class="pub-year">2023</span>
-    </li>
-
-    <!-- 2022 -->
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">029</span>
-      <div>
-        <div class="pub-title">Advanced Face Detection Using ML and AI-Based Algorithm</div>
-        <span class="pub-venue">IC3I 2022 · IEEE</span>
-      </div>
-      <span class="pub-year">2022</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">030</span>
-      <div>
-        <div class="pub-title">Sales Prediction of Cardiac Products by Time Series and Deep Learning</div>
-        <span class="pub-venue">Int. Journal of Innovations in Science & Technology, 4(5)</span>
-      </div>
-      <span class="pub-year">2022</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">031</span>
-      <div>
-        <div class="pub-title">Brain Damage Detection Using ML Approach</div>
-        <span class="pub-venue">International Journal of Health Sciences, Special (7)</span>
-      </div>
-      <span class="pub-year">2022</span>
-    </li>
-    <li class="pub-item" data-year="pre">
-      <span class="pub-num">032</span>
-      <div>
-        <div class="pub-title">Cancer Prediction Using RNA Sequencing and Deep Learning</div>
-        <span class="pub-venue">Dubey, Mujoo, Hannan, Satpathy, Arshad, Manikandan</span>
-      </div>
-      <span class="pub-year">2022</span>
-    </li>
-
-  </ul>
-</section>
-
-<!-- ============= SKILLS / KEYWORDS ============= -->
-<section id="skills">
-  <div class="section-label">§ 06 / Toolkit & Keywords</div>
-  <h2 class="section-title">A vocabulary of <em>methods and machines</em>.</h2>
-  <p class="section-lede">Selected technical terrain &mdash; some daily, some occasional, all in active use.</p>
-
-  <div class="keywords">
-    <span class="kw featured">Quantum Computing</span>
-    <span class="kw featured">QUBO Formulation</span>
-    <span class="kw featured">QAOA</span>
-    <span class="kw featured">D-Wave Annealing</span>
-    <span class="kw featured">Variational Quantum Algorithms</span>
-    <span class="kw featured">Qiskit</span>
-    <span class="kw">Hybrid Optimization</span>
-    <span class="kw">SLSQP</span>
-    <span class="kw">Reinforcement Learning</span>
-    <span class="kw">Surrogate Modeling</span>
-    <span class="kw">Multi-Objective Optimization</span>
-    <span class="kw">Metaheuristics</span>
-    <span class="kw featured">Deep Learning</span>
-    <span class="kw">Computer Vision</span>
-    <span class="kw">Time-Series Forecasting</span>
-    <span class="kw">Federated Learning</span>
-    <span class="kw">Graph Neural Networks</span>
-    <span class="kw featured">Suspension Kinematics</span>
-    <span class="kw">3D Parametric Modeling</span>
-    <span class="kw">Mathematica</span>
-    <span class="kw">Python</span>
-    <span class="kw">PyTorch</span>
-    <span class="kw">TensorFlow</span>
-    <span class="kw">MATLAB</span>
-    <span class="kw">C++</span>
-    <span class="kw">Oracle SQL</span>
-    <span class="kw">CCNA</span>
-    <span class="kw">Decision Sciences</span>
-    <span class="kw">MCDM Methods</span>
-    <span class="kw">Blockchain</span>
-  </div>
-</section>
-
-</div>
-
-<!-- ============= CONTACT ============= -->
-<section class="contact" id="contact">
-  <div class="contact-grid">
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="wrap hero-grid">
     <div>
-      <h2>Let's design the<br>next <em>experiment</em>.</h2>
+      <span class="open-badge">Open for collaboration &amp; postdoctoral opportunities</span>
+      <h1>Dr. Muhammad <em>Waqas</em> Arshad</h1>
+      <p class="lede">Ph.D. in Computer Science and Engineering, University of Bologna. I work at the intersection of <strong>quantum computing</strong> and <strong>artificial intelligence</strong> — building hybrid quantum&ndash;classical optimization, calibrated machine learning, and digital-twin methods for real engineering systems, from Ferrari vehicle dynamics to healthcare.</p>
+      <div class="cta-row">
+        <a class="btn primary" href="mailto:muhammad.waqas.arshad.1@gmail.com">Email me</a>
+        <a class="btn ghost" href="https://scholar.google.com/citations?user=OS3p2-0AAAAJ" target="_blank" rel="noopener">Google Scholar</a>
+        <a class="btn ghost" href="https://github.com/MWArshadLab" target="_blank" rel="noopener">GitHub Lab</a>
+      </div>
+      <div class="affil" aria-label="Affiliations">
+        <div><div class="k">Ph.D.</div><div class="v">University of Bologna</div></div>
+        <div><div class="k">Industry research</div><div class="v">Ferrari S.p.A.</div></div>
+        <div><div class="k">Visiting scholar</div><div class="v">Purdue University</div></div>
+        <div><div class="k">Advocate</div><div class="v">IBM Qiskit</div></div>
+      </div>
     </div>
-    <div class="contact-info">
-      <span class="label">Bologna</span>
-      <a href="mailto:muhammadwaqas.arsha2@unibo.it">muhammadwaqas.arsha2@unibo.it</a><br>
 
-      <span class="label">Maranello</span>
-      <a href="mailto:muhammadwaqas.arshad@ferrari.com">muhammadwaqas.arshad@ferrari.com</a><br>
+    <figure class="fig" aria-label="3D double-wishbone suspension simulation from Ph.D. research">
+      <img src="data:image/png;base64,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" alt="Four-panel 3D kinematic simulation of a double-wishbone suspension showing parameter sliders and 3D hardpoint configurations" style="width:100%;height:auto;display:block;border-radius:4px">
+      <figcaption>Fig. — 3D double-wishbone kinematic simulation &amp; parametric model · Ph.D. research, University of Bologna</figcaption>
+    </figure>
+  </div>
+</section>
 
-      <span class="label">Indiana</span>
-      <a href="mailto:arshad14@purdue.edu">arshad14@purdue.edu</a><br>
-
-      <span class="label">Personal</span>
-      <a href="mailto:muhammad.waqas.arshad.1@gmail.com">muhammad.waqas.arshad.1@gmail.com</a><br>
-
-      <span class="label">Elsewhere</span>
-      <a href="https://www.linkedin.com/in/muhammad-waqas-arshad-5359b4139/" target="_blank" rel="noopener">LinkedIn</a> ·
-      <a href="https://scholar.google.com/citations?user=OS3p2-0AAAAJ&hl=it" target="_blank" rel="noopener">Scholar</a> ·
-      <a href="https://orcid.org/0000-0003-3262-5833" target="_blank" rel="noopener">ORCID</a>
+<!-- ================= ABOUT ================= -->
+<section id="about">
+  <div class="wrap">
+    <span class="eyebrow">About</span>
+    <h2>Quantum &amp; AI methods that ship to real systems</h2>
+    <div class="about-grid">
+      <div>
+        <p>I recently completed my Ph.D. in Computer Science and Engineering at the <a href="https://www.unibo.it" target="_blank" rel="noopener">University of Bologna</a>, with a doctoral project carried out in industrial collaboration with <strong>Ferrari S.p.A.</strong> (Maranello). My thesis — <em>Geometric and Kinematic Modeling of Double-Wishbone Suspensions with Advanced AI–Quantum Optimization Techniques</em> — was successfully defended in March 2026.</p>
+        <p>During my doctorate I spent eight months as a Visiting Research Scholar at <strong>Purdue University</strong> (Fort Wayne, IN, USA) under <a href="https://quantum.research.purdue.edu/directory/david-liu/" target="_blank" rel="noopener">Prof. David Q. Liu</a>, working on quantum computing, machine learning, and computer-vision applications. My Ph.D. was supervised by <a href="https://www.unibo.it/sitoweb/stefano.lodi" target="_blank" rel="noopener">Prof. Stefano Lodi</a> at Bologna.</p>
+        <p>My research program spans QUBO formulations and quantum annealing, variational quantum algorithms, hybrid quantum&ndash;classical solvers, multi-objective and surrogate-assisted optimization, graph neural networks with calibrated LLM supervision, digital twins for vehicle dynamics, and AI for healthcare. I have authored <strong>35+ peer-reviewed publications</strong> across IEEE, Springer, Elsevier, Wiley, and MDPI venues.</p>
+        <p>I am an <strong>IBM Qiskit Advocate</strong>, an IEEE Member, a Professional ACM Member, and General Secretary of the Internet Society Blockchain Special Interest Group.</p>
+      </div>
+      <dl class="facts">
+        <dt>Current status</dt><dd>Ph.D. (defended 25 Mar 2026) — seeking postdoctoral &amp; faculty roles</dd>
+        <dt>Based in</dt><dd>Bologna, Italy</dd>
+        <dt>Doctoral partner</dt><dd>Ferrari S.p.A., Maranello</dd>
+        <dt>Period abroad</dt><dd>Purdue University, USA (8 months)</dd>
+        <dt>Publications</dt><dd>35+ peer-reviewed</dd>
+        <dt>ORCID</dt><dd><a href="https://orcid.org/0000-0003-3262-5833" target="_blank" rel="noopener">0000-0003-3262-5833</a></dd>
+      </dl>
     </div>
   </div>
 </section>
 
-<!-- ============= FOOT ============= -->
-<footer class="foot">
-  <div>© <span id="yr"></span> Dr. Muhammad Waqas Arshad.</div>
-  <div class="foot-links">
-    <a href="#top">Back to top ↑</a>
+<!-- ================= RESEARCH ================= -->
+<section id="research">
+  <div class="wrap">
+    <span class="eyebrow">Research</span>
+    <h2>Research areas</h2>
+    <div class="cards">
+      <div class="card">
+        <h3>Quantum &amp; hybrid optimization</h3>
+        <p>QUBO formulations, quantum annealing (D-Wave), variational quantum algorithms, and hybrid quantum&ndash;classical pipelines (QUBO–SQP, VQA-assisted multi-objective design) for hard engineering optimization.</p>
+      </div>
+      <div class="card">
+        <h3>AI for engineering &amp; digital twins</h3>
+        <p>Kinematic modeling and multi-objective optimization of vehicle suspensions, surrogate-assisted design, reinforcement learning for geometry search, and HPC benchmarking of metaheuristics.</p>
+      </div>
+      <div class="card">
+        <h3>Graphs, calibration &amp; LLMs</h3>
+        <p>Calibration-aware gating for budgeted LLM supervision in GNN link prediction; uncertainty quantification, selective prediction, and efficient human/LLM-in-the-loop learning.</p>
+      </div>
+      <div class="card">
+        <h3>Quantum machine learning</h3>
+        <p>QML for biomedical signals and imaging — including classification of left-ventricular ejection-fraction phenotypes from echocardiograms — and quantum approaches in the health sector.</p>
+      </div>
+      <div class="card">
+        <h3>Healthcare AI</h3>
+        <p>Drug-discovery optimization, cancer prediction from RNA sequencing, medical imaging segmentation (YOLOv11-SAMNet), and clinical decision support with symbolic-numerical LLM frameworks.</p>
+      </div>
+      <div class="card">
+        <h3>Forecasting &amp; decision systems</h3>
+        <p>Time-series and deep-learning forecasting, energy prediction for renewable-powered EV charging, probabilistic digital twins for microclimate, and multi-criteria decision support.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PUBLICATIONS ================= -->
+<section id="publications">
+  <div class="wrap">
+    <span class="eyebrow">Publications</span>
+    <h2>Selected publications</h2>
+
+    <div class="sel-pubs">
+      <div class="sel">
+        <div class="t">Calibration-Aware Gating for Budgeted LLM Supervision in Graph Neural Network Link Prediction</div>
+        <div class="v"><i>Discover Computing</i> (Springer) · 2026 · Accepted</div>
+      </div>
+      <div class="sel">
+        <div class="t">An Advanced Hybrid Optimization Algorithm for Vehicle Suspension Design Using a QUBO–SQP Framework</div>
+        <div class="v"><i>Mathematics</i> (MDPI) · 2025</div>
+      </div>
+      <div class="sel">
+        <div class="t">Quantum Computing in the Automotive Industry: Survey, Challenges, and Perspectives</div>
+        <div class="v"><i>The Journal of Supercomputing</i> (Springer) · 2025</div>
+      </div>
+      <div class="sel">
+        <div class="t">A Hybrid Quantum-Classical Approach Using D-Wave and SLSQP for Double Wishbone Suspension System Optimization</div>
+        <div class="v"><i>IEEE Conference on Artificial Intelligence (CAI)</i> · 2025</div>
+      </div>
+      <div class="sel">
+        <div class="t">Design and Multi-Objective Kinematic Optimization of 3D Double Wishbone Suspensions Using an Ensemble Optimization</div>
+        <div class="v"><i>Applied Research</i> (Wiley) · 2025</div>
+      </div>
+    </div>
+
+    <h2 style="font-size:1.5rem">Full list</h2>
+    <div class="filters" role="group" aria-label="Filter publications">
+      <button class="active" data-f="all">All</button>
+      <button data-f="journal">Journal articles</button>
+      <button data-f="conference">Conference papers</button>
+      <button data-f="review">Under review</button>
+    </div>
+
+    <ul class="pub-list" id="pubList">
+      <li data-t="journal"><span class="yr">2026</span><div><div class="t">Calibration-Aware Gating for Budgeted LLM Supervision in Graph Neural Network Link Prediction <span class="tag">Journal</span></div><div class="m">M. W. Arshad et al. — <em>Discover Computing</em>, Springer (Accepted)</div></div></li>
+      <li data-t="conference"><span class="yr">2026</span><div><div class="t">Constraint-Guided Probabilistic Digital Twin Based Microclimate Forecasting Using Latent Stochastic Dynamics <span class="tag">Conference</span></div><div class="m">O. Ashraf, L. Bononi, M. W. Arshad, C. Gambetti, G. Monti, U. Adeel — <em>IEEE WoWMoM 2026</em> (Accepted)</div></div></li>
+      <li data-t="conference"><span class="yr">2026</span><div><div class="t">Gradient-Based Camber Optimization of a Five-Link Suspension: Modeling, Analysis, and Benchmarking <span class="tag">Conference</span></div><div class="m">M. W. Arshad et al. — <em>iCoMET 2026</em>, IEEE (Accepted)</div></div></li>
+      <li data-t="journal"><span class="yr">2026</span><div><div class="t">HPC: A Computational Benchmark of Classical, Parallel, and Hybrid Metaheuristics for QUBO-Based Suspension Geometry Optimization <span class="tag">Journal</span></div><div class="m">M. W. Arshad, S. Lodi, O. Ashraf, M. H. Rasool, S. R. Hassan — <em>Machines</em>, 14(2), 248</div></div></li>
+      <li data-t="journal"><span class="yr">2025</span><div><div class="t">Design and Multi-Objective Kinematic Optimization of 3D Double Wishbone Suspensions Using an Ensemble Optimization <span class="tag">Journal</span></div><div class="m">M. W. Arshad, S. Lodi, D. Q. Liu — <em>Applied Research</em>, Wiley</div></div></li>
+      <li data-t="conference"><span class="yr">2025</span><div><div class="t">A Reinforcement Learning Approach for the Kinematic Optimization of Double-Wishbone Suspension Geometry <span class="tag">Conference</span></div><div class="m">M. W. Arshad, S. Lodi, D. Q. Liu — <em>32nd Int. Conf. on Systems Engineering (ICSEng)</em>, Springer</div></div></li>
+      <li data-t="journal"><span class="yr">2025</span><div><div class="t">Double Wishbone Suspension: A Computational Framework for Parametric 3D Kinematic Modeling and Simulation Using Mathematica <span class="tag">Journal</span></div><div class="m">M. W. Arshad, S. Lodi, D. Q. Liu — <em>Technologies</em>, 13(8), 332</div></div></li>
+      <li data-t="journal"><span class="yr">2025</span><div><div class="t">An Advanced Hybrid Optimization Algorithm for Vehicle Suspension Design Using a QUBO-SQP Framework <span class="tag">Journal</span></div><div class="m">M. W. Arshad, S. Lodi, D. Q. Liu — <em>Mathematics</em>, 13, 3843</div></div></li>
+      <li data-t="journal"><span class="yr">2025</span><div><div class="t">Quantum Computing in the Automotive Industry: Survey, Challenges, and Perspectives <span class="tag">Journal</span></div><div class="m">M. W. Arshad, S. Lodi — <em>The Journal of Supercomputing</em>, 81(10), 1–45</div></div></li>
+      <li data-t="journal"><span class="yr">2025</span><div><div class="t">Multi-Objective Optimization of Independent Automotive Suspension by AI and Quantum Approaches: A Systematic Review <span class="tag">Journal</span></div><div class="m">M. W. Arshad, S. Lodi, D. Q. Liu — <em>Machines</em>, 13(3)</div></div></li>
+      <li data-t="conference"><span class="yr">2025</span><div><div class="t">A Hybrid Quantum-Classical Approach Using D-Wave and SLSQP for Double Wishbone Suspension System Optimization <span class="tag">Conference</span></div><div class="m">M. W. Arshad, S. Lodi, D. Q. Liu — <em>IEEE Conference on Artificial Intelligence (CAI)</em>, pp. 16–19</div></div></li>
+      <li data-t="conference"><span class="yr">2025</span><div><div class="t">Quantum Machine Learning for Classification of Left Ventricular Ejection Fraction Phenotypes from Echocardiograms <span class="tag">Conference</span></div><div class="m">P. Decoodt, M. W. Arshad, M. Morissens, D. Q. Liu — <em>IEEE-EMBS BHI</em></div></div></li>
+      <li data-t="conference"><span class="yr">2025</span><div><div class="t">YOLOv11-SAMNet: A Hybrid Detection and Segmentation Framework for Urine Sediment Analysis <span class="tag">Conference</span></div><div class="m">S. Akhtar, M. Hanif, H. M. Saraoglu, S. Lal, M. W. Arshad — <em>ICCSA</em>, Springer, pp. 241–251</div></div></li>
+      <li data-t="conference"><span class="yr">2025</span><div><div class="t">Cutting-Edge Malware Detection in Healthcare: Leveraging Cascaded-AlexNet Model <span class="tag">Conference</span></div><div class="m">S. Akhtar, M. Hanif, M. W. Arshad, F. Farooq — <em>ICCSA</em>, Springer, pp. 89–100</div></div></li>
+      <li data-t="journal"><span class="yr">2025</span><div><div class="t">A Hybrid Genetic Algorithm and Hidden Markov Model-Based Hashing Technique for Robust Data Security <span class="tag">Journal</span></div><div class="m">A. AlShuaibi, M. W. Arshad, M. Maayah — <em>Journal of Cyber Security and Risk Auditing</em>, 2025(3), 42–56</div></div></li>
+      <li data-t="journal"><span class="yr">2025</span><div><div class="t">An Integrated Federated Learning Framework with Optimization for Industrial IoT Intrusion Detection <span class="tag">Journal</span></div><div class="m">A. Ali, A. AlShuaibi, M. W. Arshad — <em>SHIFRA</em>, 110–117</div></div></li>
+      <li data-t="conference"><span class="yr">2024</span><div><div class="t">Decision Support System in Teacher Pedagogy Assessment Using MAIRCA with Geometric Mean Weighting <span class="tag">Conference</span></div><div class="m">N. Hendrastuty, M. G. Ar'nars, T. A. Putra, M. W. Arshad — <em>ICIMCIS 2024</em>, IEEE, pp. 265–270</div></div></li>
+      <li data-t="conference"><span class="yr">2024</span><div><div class="t">AI-Driven Energy Forecasting for EV Charging Stations Powered by Solar and Wind Energy <span class="tag">Conference</span></div><div class="m">N. Shetty et al. (incl. M. W. Arshad) — <em>icSmartGrid 2024</em>, IEEE, pp. 336–339</div></div></li>
+      <li data-t="conference"><span class="yr">2024</span><div><div class="t">Optimization of Double Wishbone Suspension: Evaluating the Performance of Classes of Algorithms <span class="tag">Conference</span></div><div class="m">M. W. Arshad, S. Lodi — <em>ICAMCS</em>, IEEE Computer Society, pp. 156–161</div></div></li>
+      <li data-t="journal"><span class="yr">2024</span><div><div class="t">Combination of Multi-Attributive Ideal-Real Comparative Analysis and Rank Order Centroid in Supplier Performance Evaluation <span class="tag">Journal</span></div><div class="m">M. W. Arshad — <em>KLIK</em>, 4(4), 2330–2341</div></div></li>
+      <li data-t="journal"><span class="yr">2024</span><div><div class="t">Comparative Analysis of MOORA and GRA with PIPRECIA Weighting in Selection of Warehouse Heads <span class="tag">Journal</span></div><div class="m">M. W. Arshad, S. Setiawansyah, S. Sintaro — <em>BEES</em>, 4(3), 112–122</div></div></li>
+      <li data-t="journal"><span class="yr">2024</span><div><div class="t">Entropy and Additive Ratio Assessment Methods in Determining the Best Warehouse Location <span class="tag">Journal</span></div><div class="m">M. W. Arshad — <em>Bulletin of Computer Science Research</em>, 4(4), 318–326</div></div></li>
+      <li data-t="journal"><span class="yr">2024</span><div><div class="t">MIS-Function in Automotive Sales Promotion Planning Using ML <span class="tag">Journal</span></div><div class="m">I. Bhardwaj, T. R. Biswas, M. W. Arshad, A. Upadhyay, A. B. More — <em>Library Progress International</em>, 44(3), 3164–3170</div></div></li>
+      <li data-t="journal"><span class="yr">2024</span><div><div class="t">Combination of LOPCOW and MAIRCA in Determining Best Production Employees <span class="tag">Journal</span></div><div class="m">S. H. Hadad et al. (incl. M. W. Arshad) — <em>Jurnal Teknik Informatika (Jutif)</em>, 5(3), 843–853</div></div></li>
+      <li data-t="journal"><span class="yr">2024</span><div><div class="t">Decision Support System for Best Honorary Teacher Performance Assessment Using LOPCOW and MARCOS <span class="tag">Journal</span></div><div class="m">A. D. Putra, M. W. Arshad, S. Setiawansyah, S. Sintaro — <em>JoSYC</em>, 5(3), 578–590</div></div></li>
+      <li data-t="journal"><span class="yr">2023</span><div><div class="t">Role of AI in Decision Making and Its Socio-Psycho Impact <span class="tag">Journal</span></div><div class="m">I. Muda et al. (incl. M. W. Arshad) — <em>Journal for ReAttach Therapy and Developmental Diversities</em>, 6(5s), 517–523</div></div></li>
+      <li data-t="journal"><span class="yr">2023</span><div><div class="t">Applications of Quantum Computing in Health Sector <span class="tag">Journal</span></div><div class="m">M. W. Arshad, I. Murtza, M. A. Arshad — <em>JDSIS</em>, 1(1), 19–24</div></div></li>
+      <li data-t="journal"><span class="yr">2023</span><div><div class="t">Detection of Human Gender from Eyes Images Using DNN Approach <span class="tag">Journal</span></div><div class="m">M. W. Arshad — <em>Jurnal Teknoinfo</em>, 17(2), 336–340</div></div></li>
+      <li data-t="journal"><span class="yr">2023</span><div><div class="t">Prediction and Diagnosis of Breast Cancer Using ML and Ensemble Classifiers <span class="tag">Journal</span></div><div class="m">M. W. Arshad — <em>Central Asian Journal of Mathematical Theory and Computer Sciences</em>, 4(1), 49–56</div></div></li>
+      <li data-t="conference"><span class="yr">2022</span><div><div class="t">Advanced Face Detection Using ML and AI-Based Algorithm <span class="tag">Conference</span></div><div class="m">S. S. Phatak, H. S. Patil, M. W. Arshad et al. — <em>IC3I 2022</em>, IEEE, pp. 1111–1116</div></div></li>
+      <li data-t="journal"><span class="yr">2022</span><div><div class="t">Sales Prediction of Cardiac Products by Time Series and Deep Learning <span class="tag">Journal</span></div><div class="m">M. W. Arshad, S. F. Tahir — <em>Int. Journal of Innovations in Science &amp; Technology</em>, 4(5), 1–11</div></div></li>
+      <li data-t="journal"><span class="yr">2022</span><div><div class="t">Cancer Prediction Using RNA Sequencing and Deep Learning <span class="tag">Journal</span></div><div class="m">A. Dubey et al. (incl. M. W. Arshad)</div></div></li>
+      <li data-t="journal"><span class="yr">2022</span><div><div class="t">Brain Damage Detection Using ML Approach <span class="tag">Journal</span></div><div class="m">S. A. Hannan et al. (incl. M. W. Arshad) — <em>International Journal of Health Sciences</em>, Special (7), 4910–4924</div></div></li>
+
+      <li data-t="review"><span class="yr">2026</span><div><div class="t">A Surrogate-Assisted Multi-Objective Optimization Framework for the Kinematic Design of 3D Double Wishbone Suspension <span class="tag review">Under review</span></div><div class="m"><em>SN Computer Science</em>, Springer</div></div></li>
+      <li data-t="review"><span class="yr">2026</span><div><div class="t">A Hybrid Variational Quantum-Classical Framework for Multi-Objective Design Optimization of DWS Kinematics <span class="tag review">Under review</span></div><div class="m"><em>JESTECH</em>, Elsevier</div></div></li>
+      <li data-t="review"><span class="yr">2026</span><div><div class="t">From Chat to Graph: Evaluating Interface Legibility for Human Oversight of Multi-Agent AI Systems <span class="tag review">Under review</span></div><div class="m"><em>Human-Centric Intelligent Systems</em></div></div></li>
+      <li data-t="review"><span class="yr">2026</span><div><div class="t">Towards LLM-Guided Personalized Cardiac Treatment Optimization: A Hybrid Symbolic-Numerical Framework for Multi-Objective Clinical Decision Support <span class="tag review">Under review</span></div><div class="m"><em>Health Information Science and Systems</em></div></div></li>
+    </ul>
+    <p class="count-note" id="pubCount"></p>
+  </div>
+</section>
+
+<!-- ================= TRAINING ================= -->
+<section id="training">
+  <div class="wrap">
+    <span class="eyebrow">Advanced training</span>
+    <h2>Quantum &amp; AI schools</h2>
+    <div class="train">
+      <div><div class="where">Brookhaven National Laboratory · C2QA · Virginia Tech (2025)</div><div class="what">Quantum Information Science and Engineering program — U.S. Department of Energy Office of Science</div></div>
+      <div><div class="where">Forschungszentrum Jülich · JUNIQ, Germany (2023)</div><div class="what">Summer School on Quantum Information Processing (Research Scholar)</div></div>
+      <div><div class="where">University of Copenhagen · QMATH (2023)</div><div class="what">QMATH Masterclass on Quantum Learning Theory</div></div>
+      <div><div class="where">EIT Deep Tech Talent · CTU Prague · University of Latvia · QWorld (2023)</div><div class="what">ADEQUATE — Advanced End-to-End Quantum Computing Technical program</div></div>
+      <div><div class="where">University of Ljubljana, Slovenia (2023)</div><div class="what">European Summer School on AI (ESSAI) &amp; 3rd TAILOR Summer School</div></div>
+      <div><div class="where">IBM Quantum (ongoing)</div><div class="what">Qiskit Advocate — advancing quantum computing and growing the Qiskit ecosystem</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SERVICE ================= -->
+<section id="service">
+  <div class="wrap">
+    <span class="eyebrow">Academic service</span>
+    <h2>Committees &amp; reviewing</h2>
+    <div class="two-col">
+      <div>
+        <h3 style="margin-bottom:.8rem">Technical program committees</h3>
+        <ul class="plain">
+          <li><b>IEEE SOCC 2025</b> — 38th International System-on-Chip Conference</li>
+          <li><b>ICCSA 2025</b> — 26th Int. Conf. on Computational Science and Its Applications</li>
+          <li><b>icSoftComp 2024</b> — Soft Computing and its Engineering Applications, Springer</li>
+        </ul>
+      </div>
+      <div>
+        <h3 style="margin-bottom:.8rem">Journal &amp; conference reviewing</h3>
+        <ul class="plain">
+          <li><b>Int. Journal of Mining Science and Technology</b> (Q1)</li>
+          <li><b>IET Quantum Communication</b> (Q1)</li>
+          <li><b>Neural Computing and Applications</b> (Q1)</li>
+          <li>Int. Journal of Intelligent Information Systems · JDSIS · Asian Journal of Education and Social Studies</li>
+          <li>IEEE ICECT 2024 · IEEE ICCIT</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= NEWS ================= -->
+<section id="news">
+  <div class="wrap">
+    <span class="eyebrow">News</span>
+    <h2>Recent updates</h2>
+    <ul class="news">
+      <li><span class="d">Mar 2026</span><div>Successfully defended my Ph.D. thesis at the University of Bologna 🎓</div></li>
+      <li><span class="d">2026</span><div>Paper on calibration-aware gating for budgeted LLM supervision accepted at <em>Discover Computing</em> (Springer, Q1)</div></li>
+      <li><span class="d">2026</span><div>Digital-twin microclimate forecasting paper accepted at <em>IEEE WoWMoM 2026</em></div></li>
+      <li><span class="d">2026</span><div>Five-link suspension camber optimization paper accepted at <em>iCoMET 2026</em> (IEEE)</div></li>
+      <li><span class="d">2026</span><div>HPC metaheuristics benchmark for QUBO suspension optimization published in <em>Machines</em></div></li>
+      <li><span class="d">2025</span><div>Selected for the Quantum Information Science &amp; Engineering program at Brookhaven National Laboratory (DOE / C2QA)</div></li>
+    </ul>
+  </div>
+</section>
+
+<!-- ================= COLLABORATE ================= -->
+<section id="contact" style="border-top:none;padding-top:0">
+  <div class="wrap">
+    <div class="collab">
+      <div>
+        <span class="eyebrow" style="color:#ff8fa0">Let's work together</span>
+        <h2>Open for collaboration</h2>
+        <p>I am actively seeking postdoctoral positions and research collaborations in quantum computing, hybrid optimization, trustworthy machine learning, and AI for engineering and healthcare. If your group works in these areas — or you have a hard optimization problem from industry — I would be glad to talk.</p>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:12px">
+        <a class="btn primary" href="mailto:muhammad.waqas.arshad.1@gmail.com">muhammad.waqas.arshad.1@gmail.com</a>
+        <a class="btn ghost" href="https://www.linkedin.com/in/muhammad-waqas-arshad-5359b4139/" target="_blank" rel="noopener">Connect on LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FOOTER ================= -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <h3>Profiles</h3>
+        <ul>
+          <li><a href="https://scholar.google.com/citations?user=OS3p2-0AAAAJ" target="_blank" rel="noopener">Google Scholar</a></li>
+          <li><a href="https://orcid.org/0000-0003-3262-5833" target="_blank" rel="noopener">ORCID — 0000-0003-3262-5833</a></li>
+          <li><a href="https://www.linkedin.com/in/muhammad-waqas-arshad-5359b4139/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://github.com/MWArshadLab" target="_blank" rel="noopener">GitHub — MWArshadLab</a></li>
+        </ul>
+      </div>
+      <div>
+        <h3>Mentors &amp; collaborators</h3>
+        <ul>
+          <li><a href="https://www.unibo.it/sitoweb/stefano.lodi" target="_blank" rel="noopener">Prof. Stefano Lodi — University of Bologna</a></li>
+          <li><a href="https://quantum.research.purdue.edu/directory/david-liu/" target="_blank" rel="noopener">Prof. David Q. Liu — Purdue University</a></li>
+          <li>Davide Torre — Ferrari S.p.A.</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <ul>
+          <li><a href="mailto:muhammad.waqas.arshad.1@gmail.com">muhammad.waqas.arshad.1@gmail.com</a></li>
+          <li><a href="mailto:muhammadwaqas.arsha2@unibo.it">muhammadwaqas.arsha2@unibo.it</a></li>
+          <li>Bologna, Italy</li>
+        </ul>
+      </div>
+    </div>
+    <p class="copy">© 2026 Muhammad Waqas Arshad · Built with plain HTML/CSS · Hosted on GitHub Pages</p>
   </div>
 </footer>
 
 <script>
-// Year
-document.getElementById('yr').textContent = new Date().getFullYear();
-
-// Publication tab filter
-const tabs = document.querySelectorAll('.pub-tab');
-const list = document.getElementById('pubList');
-tabs.forEach(tab => {
-  tab.addEventListener('click', () => {
-    tabs.forEach(t => t.classList.remove('active'));
-    tab.classList.add('active');
-    const filter = tab.dataset.filter;
-    list.classList.remove('show-all','show-2026','show-2025','show-pre','show-rev');
-    if (filter === 'all') {
-      list.classList.add('show-all');
-    } else {
-      list.classList.add('show-' + filter);
-    }
+(function(){
+  var btns=document.querySelectorAll('.filters button');
+  var items=document.querySelectorAll('#pubList li');
+  var note=document.getElementById('pubCount');
+  function apply(f){
+    var n=0;
+    items.forEach(function(li){
+      var show=(f==='all')||(li.dataset.t===f);
+      li.style.display=show?'':'none';
+      if(show)n++;
+    });
+    note.textContent='Showing '+n+' item'+(n===1?'':'s');
+  }
+  btns.forEach(function(b){
+    b.addEventListener('click',function(){
+      btns.forEach(function(x){x.classList.remove('active')});
+      b.classList.add('active');
+      apply(b.dataset.f);
+    });
   });
-});
-list.classList.add('show-all');
-
-// Fade-in observer
-const io = new IntersectionObserver((entries) => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('visible');
-      io.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.12 });
-
-document.querySelectorAll('section, .exp-item, .research-card, .edu-item').forEach(el => {
-  el.classList.add('fade-in');
-  io.observe(el);
-});
+  apply('all');
+})();
 </script>
-
 </body>
 </html>
